@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RealRating — Echte Bewertungen. Unzensiert.</title>
+<title>RealRating — Echte Bewertungen. Sichtbar gemacht.</title>
 <meta name="description" content="RealRating erkennt Bewertungen, die wegen Diffamierungsbeschwerden in Deutschland aus Google Maps entfernt wurden, und zeigt die echte Bewertung." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -84,6 +84,10 @@
   .privacy-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
   .privacy-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
   .privacy-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .objection-section { border-top: 1px solid var(--border); }
+  .objection-inner { max-width: 640px; margin: 0 auto; padding: 64px 48px; text-align: left; }
+  .objection-inner h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 16px; }
+  .objection-inner p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
   .signup-section { background: var(--navy2); border-top: 1px solid var(--border); }
   .signup-inner { max-width: 640px; margin: 0 auto; padding: 96px 48px; text-align: left; }
   .signup-inner h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 16px; }
@@ -112,6 +116,7 @@
     .detect-inner { grid-template-columns: 1fr; padding: 56px 20px; gap: 40px; }
     .privacy-grid { grid-template-columns: 1fr; } .privacy-section { padding: 56px 20px; }
     .signup-inner { padding: 56px 20px; }
+    .objection-inner { padding: 48px 20px; }
     .email-form { flex-direction: column; }
     .email-form input { border-right: 1px solid var(--border); border-bottom: none; }
     .email-form button { padding: 14px; }
@@ -141,7 +146,7 @@
 <section class="hero">
   <div class="hero-text">
     <p class="hero-eyebrow" data-i18n="hero_eyebrow">Transparenz f&#xFC;r Google Maps Deutschland</p>
-    <h1 data-i18n-html="hero_h1">Die Bewertung,<br>die Google <em>versteckt.</em><br>Wir zeigen sie.</h1>
+    <h1 data-i18n-html="hero_h1">Die Bewertung nach den L&#xF6;schungen.<br>Wir machen sie <em>sichtbar.</em></h1>
     <p class="hero-sub" data-i18n="hero_sub">In Deutschland k&#xF6;nnen Unternehmen Bewertungen per Verleumdungsbeschwerde entfernen lassen. RealRating erkennt diese Entfernungen und sch&#xE4;tzt, wie die echte Bewertung aussehen w&#xFC;rde.</p>
     <div class="hero-actions">
       <a href="https://chromewebstore.google.com/detail/realrating/EXTENSION_ID" class="btn-primary" target="_blank" rel="noopener" data-i18n="btn_install">&#x2B07; Zu Chrome hinzuf&#xFC;gen &#x2014; Kostenlos</a>
@@ -190,7 +195,7 @@
   <h2 class="section-title" data-i18n="hiw_title">So funktioniert RealRating</h2>
   <div class="steps">
     <div class="step"><div class="step-num">01</div><h3 data-i18n="step1_h">Beliebiges Unternehmen auf Maps &#xF6;ffnen</h3><p data-i18n="step1_p">RealRating l&#xE4;uft automatisch im Hintergrund. Kein Setup, kein Klicken &#x2014; einfach Google Maps wie gewohnt nutzen.</p></div>
-    <div class="step"><div class="step-num">02</div><h3 data-i18n="step2_h">Erkennung in unter einer Sekunde</h3><p data-i18n="step2_p">Falls ein Hinweis auf eine Verleumdungsentfernung existiert, findet RealRating ihn &#x2014; auch wenn Google ihn im Bewertungs-Tab versteckt, wo die meisten Nutzer nie hinschauen.</p></div>
+    <div class="step"><div class="step-num">02</div><h3 data-i18n="step2_h">Erkennung in unter einer Sekunde</h3><p data-i18n="step2_p">Falls ein Hinweis auf eine Verleumdungsentfernung existiert, findet RealRating ihn &#x2014; auch im Bewertungs-Tab, den die meisten Nutzer nie aufrufen.</p></div>
     <div class="step"><div class="step-num">03</div><h3 data-i18n="step3_h">Das echte Bild sehen</h3><p data-i18n="step3_p">Ein Badge zeigt, wie viele Bewertungen entfernt wurden, und sch&#xE4;tzt die Bewertung, die diese Bewertungen ergeben w&#xFC;rden &#x2014; berechnet nach der gleichen Methode wie Pieter Levels&#x2019; Real Rating Calculator.</p></div>
   </div>
 </section>
@@ -225,6 +230,14 @@
   </div>
 </section>
 
+<div class="objection-section">
+  <div class="objection-inner">
+    <h2 data-i18n="obj_h">Sind Sie Inhaber dieses Unternehmens?</h2>
+    <p data-i18n="obj_p">Wenn Sie glauben, dass eine hier angezeigte Information fehlerhaft ist, oder Fragen zu einer Bewertungsanzeige haben, kontaktieren Sie uns direkt &#x2014; wir gehen jeder Meldung nach.</p>
+    <a href="mailto:hello@realrating.de?subject=Gesch%C3%A4ftsinhaber-Meldung" class="btn-primary" data-i18n="obj_btn">Kontakt aufnehmen</a>
+  </div>
+</div>
+
 <div class="signup-section">
   <div class="signup-inner">
     <h2 data-i18n="signup_h">Bleib auf dem Laufenden</h2>
@@ -255,7 +268,7 @@ const T = {
     nav_policy:   `Datenschutzrichtlinie`,
     btn_install:  `⬇ Zu Chrome hinzufügen — Kostenlos`,
     hero_eyebrow: `TRANSPARENZ FÜR GOOGLE MAPS DEUTSCHLAND`,
-    hero_h1:      `Die Bewertung,<br>die Google <em>versteckt.</em><br>Wir zeigen sie.`,
+    hero_h1:      `Die Bewertung nach den Löschungen.<br>Wir machen sie <em>sichtbar.</em>`,
     hero_sub:     `In Deutschland können Unternehmen Bewertungen per Verleumdungsbeschwerde entfernen lassen. RealRating erkennt diese Entfernungen und schätzt, wie die echte Bewertung aussehen würde.`,
     hero_note:    `Chrome · Kein Konto erforderlich`,
     badge_label:  `RealRating-Badge — Live-Beispiel`,
@@ -271,7 +284,7 @@ const T = {
     step1_h:      `Beliebiges Unternehmen auf Maps öffnen`,
     step1_p:      `RealRating läuft automatisch im Hintergrund. Kein Setup, kein Klicken — einfach Google Maps wie gewohnt nutzen.`,
     step2_h:      `Erkennung in unter einer Sekunde`,
-    step2_p:      `Falls ein Hinweis auf eine Verleumdungsentfernung existiert, findet RealRating ihn — auch wenn Google ihn im Bewertungs-Tab versteckt, wo die meisten Nutzer nie hinschauen.`,
+    step2_p:      `Falls ein Hinweis auf eine Verleumdungsentfernung existiert, findet RealRating ihn — auch im Bewertungs-Tab, den die meisten Nutzer nie aufrufen.`,
     step3_h:      `Das echte Bild sehen`,
     step3_p:      `Ein Badge zeigt, wie viele Bewertungen entfernt wurden, und schätzt die Bewertung, die diese ergeben würden — berechnet nach der gleichen Methode wie Pieter Levels’ Real Rating Calculator.`,
     det_title:    `In drei Sprachen erkannt`,
@@ -286,6 +299,9 @@ const T = {
     priv3_p:      `Öffnen Sie das Extension-Popup und klicken Sie auf „Alle Einträge löschen.“ Alles ist sofort weg. Keine Wiederherstellung, kein Backup — Sie haben die volle Kontrolle.`,
     priv4_h:      `Minimale Berechtigungen`,
     priv4_p:      `RealRating benötigt nur <code style="font-size:12px;color:var(--amber)">storage</code> und Zugriff auf <code style="font-size:12px;color:var(--amber)">google.com/maps/*</code> — nichts darüber hinaus.`,
+    obj_h:        `Sind Sie Inhaber dieses Unternehmens?`,
+    obj_p:        `Wenn Sie glauben, dass eine hier angezeigte Information fehlerhaft ist, oder Fragen zu einer Bewertungsanzeige haben, kontaktieren Sie uns direkt — wir gehen jeder Meldung nach.`,
+    obj_btn:      `Kontakt aufnehmen`,
     signup_h:     `Bleib auf dem Laufenden`,
     signup_p:     `Neue Funktionen, Transparenzberichte und Updates zu deutschen Verleumdungsentfernungen — gelegentlich, niemals Spam.`,
     email_ph:     `ihre@email.de`,
@@ -302,7 +318,7 @@ const T = {
     nav_policy:   `Privacy Policy`,
     btn_install:  `⬇ Add to Chrome — Free`,
     hero_eyebrow: `TRANSPARENCY FOR GERMAN GOOGLE MAPS`,
-    hero_h1:      `The rating<br>Google <em>hides.</em><br>We show.`,
+    hero_h1:      `The rating after the removals.<br>We make it <em>visible.</em>`,
     hero_sub:     `In Germany, businesses can have reviews removed via defamation complaints. RealRating detects these removals and estimates what the real rating would be.`,
     hero_note:    `Chrome · No account required`,
     badge_label:  `RealRating badge — live example`,
@@ -318,7 +334,7 @@ const T = {
     step1_h:      `Open any business on Maps`,
     step1_p:      `RealRating runs automatically in the background. No setup, no clicking — just browse Google Maps as usual.`,
     step2_h:      `Detection in under a second`,
-    step2_p:      `If a defamation removal notice exists, RealRating finds it — even when Google buries it in the Reviews tab where most users never look.`,
+    step2_p:      `If a defamation removal notice exists, RealRating finds it — even in the Reviews tab, which most users never check.`,
     step3_h:      `See the real picture`,
     step3_p:      `A badge shows how many reviews were removed and estimates the rating those reviews would produce if counted — calculated using the same method as Pieter Levels’ Real Rating Calculator.`,
     det_title:    `Detected in three languages`,
@@ -333,6 +349,9 @@ const T = {
     priv3_p:      `Open the extension popup and hit “Clear all records.” Everything is gone immediately. No recovery, no backup — you’re in full control.`,
     priv4_h:      `Minimal permissions`,
     priv4_p:      `RealRating requests only <code style="font-size:12px;color:var(--amber)">storage</code> and access to <code style="font-size:12px;color:var(--amber)">google.com/maps/*</code> — nothing broader.`,
+    obj_h:        `Are you the owner of this business?`,
+    obj_p:        `If you believe any information shown here is inaccurate, or have questions about a rating display, contact us directly — we follow up on every report.`,
+    obj_btn:      `Get in touch`,
     signup_h:     `Stay in the loop`,
     signup_p:     `New features, transparency reports, and updates on German defamation removals — delivered occasionally, never spam.`,
     email_ph:     `your@email.com`,
@@ -349,7 +368,7 @@ const T = {
     nav_policy:   `Gizlilik Politikası`,
     btn_install:  `⬇ Chrome’a Ekle — Ücretsiz`,
     hero_eyebrow: `ALMANYA GOOGLE MAPS İÇİN ŞEFFAFLIK`,
-    hero_h1:      `Google’ın<br><em>gizlediği</em><br>puanı gösteriyoruz.`,
+    hero_h1:      `Silinmelerden sonraki puan.<br>Biz onu <em>görünür</em> kılıyoruz.`,
     hero_sub:     `Almanya’da işletmeler, hakaret şikayetleriyle yorumlarını kaldırtabilir. RealRating bu kaldırmaları tespit eder ve gerçek puanın ne olacağını tahmin eder.`,
     hero_note:    `Chrome · Hesap gerekmez`,
     badge_label:  `RealRating rozeti — canlı örnek`,
@@ -365,7 +384,7 @@ const T = {
     step1_h:      `Haritalar’da herhangi bir işletmeyi aç`,
     step1_p:      `RealRating arka planda otomatik olarak çalışır. Kurulum yok, tıklama yok — Google Haritalar’ı her zamanki gibi kullan.`,
     step2_h:      `Bir saniyeden kısa sürede tespit`,
-    step2_p:      `Bir hakaret kaldırma bildirimi varsa, RealRating onu bulur — Google bunu çoğu kullanıcının hiç bakmadığı Yorumlar sekmesine gömse bile.`,
+    step2_p:      `Bir hakaret kaldırma bildirimi varsa, RealRating onu bulur — çoğu kullanıcının hiç açmadığı Yorumlar sekmesinde bile.`,
     step3_h:      `Gerçek resmi gör`,
     step3_p:      `Bir rozet, kaç yorumun kaldırıldığını gösterir ve sayılsaydı bu yorumların oluşturacağı puanı tahmin eder — Pieter Levels’ Real Rating Calculator yöntemiyle hesaplanır.`,
     det_title:    `Üç dilde tespit`,
@@ -380,6 +399,9 @@ const T = {
     priv3_p:      `Eklenti açılır penceresini açın ve “Tüm kayıtları temizle” düğmesine tıklayın. Her şey anlık silinir. Kurtarma yok, yedek yok — tam kontrolü sizde.`,
     priv4_h:      `Minimum izinler`,
     priv4_p:      `RealRating yalnızca <code style="font-size:12px;color:var(--amber)">storage</code> ve <code style="font-size:12px;color:var(--amber)">google.com/maps/*</code> erişimi ister — bunun ötesinde hiçbir şey.`,
+    obj_h:        `Bu işletmenin sahibi misiniz?`,
+    obj_p:        `Burada gösterilen bir bilginin hatalı olduğunu düşünüyorsanız veya bir puan gösterimiyle ilgili sorularınız varsa doğrudan bizimle iletişime geçin — her bildirimi inceliyoruz.`,
+    obj_btn:      `İletişime geç`,
     signup_h:     `Haberdar ol`,
     signup_p:     `Yeni özellikler, şeffaflık raporları ve Almanya’daki hakaret kaldırma güncellemeleri — arada sırada, asla spam değil.`,
     email_ph:     `eposta@adresin.com`,
