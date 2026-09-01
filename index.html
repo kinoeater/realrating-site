@@ -3,540 +3,173 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RealScore — Echte Bewertungen. Unzensiert.</title>
-<meta name="description" content="RealScore erkennt Bewertungen, die wegen Diffamierungsbeschwerden in Deutschland aus Google Maps entfernt wurden, und zeigt die echte Bewertung." />
+<title>RealRating — Echte Bewertungen. Unzensiert.</title>
+<meta name="description" content="RealRating erkennt Bewertungen, die wegen Diffamierungsbeschwerden in Deutschland aus Google Maps entfernt wurden, und zeigt die echte Bewertung." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --navy:   #0F1B2D;
-    --navy2:  #162438;
-    --amber:  #F5A623;
-    --amber2: #E09515;
-    --white:  #F8F8F6;
-    --muted:  #8A98A8;
-    --border: #1E2F45;
-    --red:    #DC2626;
-    --green:  #16a34a;
+    --navy:   #0F1B2D; --navy2:  #162438;
+    --amber:  #F5A623; --amber2: #E09515;
+    --white:  #F8F8F6; --muted:  #8A98A8;
+    --border: #1E2F45; --red:    #DC2626; --green:  #16a34a;
   }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-    background: var(--navy);
-    color: var(--white);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--navy);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 48px;
-    height: 60px;
-  }
-
-  .nav-logo {
-    font-weight: 900; font-size: 18px; letter-spacing: -0.03em;
-    color: var(--white);
-    text-decoration: none;
-  }
+  body { font-family: 'Inter', system-ui, sans-serif; background: var(--navy); color: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  nav { position: sticky; top: 0; z-index: 100; background: var(--navy); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 60px; }
+  .nav-logo { font-weight: 900; font-size: 18px; letter-spacing: -0.03em; color: var(--white); text-decoration: none; }
   .nav-logo span { color: var(--amber); }
-
-  nav a.nav-link {
-    font-size: 14px; color: var(--muted); text-decoration: none;
-    transition: color 0.15s;
-  }
+  nav a.nav-link { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
   nav a.nav-link:hover { color: var(--white); }
-
-  .nav-right { display: flex; align-items: center; gap: 32px; }
-
-  .btn-install {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--amber); color: var(--navy);
-    font-weight: 700; font-size: 14px;
-    padding: 9px 20px;
-    border: none; cursor: pointer; text-decoration: none;
-    transition: background 0.15s;
-  }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  .lang-switcher { display: flex; align-items: center; gap: 2px; background: var(--navy2); border: 1px solid var(--border); padding: 3px; }
+  .lang-btn { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--muted); background: none; border: none; cursor: pointer; padding: 4px 10px; transition: color 0.15s, background 0.15s; font-family: 'Inter', sans-serif; }
+  .lang-btn:hover { color: var(--white); }
+  .lang-btn.active { background: var(--amber); color: var(--navy); }
+  .btn-install { display: inline-flex; align-items: center; gap: 8px; background: var(--amber); color: var(--navy); font-weight: 700; font-size: 14px; padding: 9px 20px; border: none; cursor: pointer; text-decoration: none; transition: background 0.15s; }
   .btn-install:hover { background: var(--amber2); }
-
-  /* ── HERO ── */
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: center;
-    max-width: 1120px; margin: 0 auto;
-    padding: 96px 48px 80px;
-  }
-
-  .hero-eyebrow {
-    font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
-    color: var(--amber); text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
-  .hero h1 {
-    font-size: clamp(36px, 5vw, 60px);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 24px;
-  }
-
-  .hero h1 em {
-    font-style: normal;
-    color: var(--amber);
-  }
-
-  .hero-sub {
-    font-size: 18px; color: var(--muted); line-height: 1.6;
-    max-width: 480px; margin-bottom: 40px;
-  }
-
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1120px; margin: 0 auto; padding: 96px 48px 80px; }
+  .hero-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--amber); text-transform: uppercase; margin-bottom: 20px; }
+  .hero h1 { font-size: clamp(36px, 5vw, 60px); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; }
+  .hero h1 em { font-style: normal; color: var(--amber); }
+  .hero-sub { font-size: 18px; color: var(--muted); line-height: 1.6; max-width: 480px; margin-bottom: 40px; }
   .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--amber); color: var(--navy);
-    font-weight: 700; font-size: 16px;
-    padding: 14px 28px;
-    border: none; cursor: pointer; text-decoration: none;
-    transition: background 0.15s;
-  }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--amber); color: var(--navy); font-weight: 700; font-size: 16px; padding: 14px 28px; border: none; cursor: pointer; text-decoration: none; transition: background 0.15s; }
   .btn-primary:hover { background: var(--amber2); }
-
-  .hero-note {
-    font-size: 13px; color: var(--muted);
-  }
-
-  /* ── BADGE MOCKUP ── */
-  .badge-demo {
-    background: var(--navy2);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--amber);
-    padding: 20px 24px;
-    font-family: 'Inter', sans-serif;
-    max-width: 340px;
-    position: relative;
-  }
-
-  .badge-demo-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
-    color: var(--muted); text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .badge-row {
-    display: flex; align-items: flex-start; gap: 12px;
-  }
-
+  .hero-note { font-size: 13px; color: var(--muted); }
+  .badge-demo { background: var(--navy2); border: 1px solid var(--border); border-left: 4px solid var(--amber); padding: 20px 24px; font-family: 'Inter', sans-serif; max-width: 340px; position: relative; }
+  .badge-demo-label { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; margin-bottom: 16px; }
+  .badge-row { display: flex; align-items: flex-start; gap: 12px; }
   .badge-icon { font-size: 22px; margin-top: 2px; }
-
-  .badge-title {
-    font-size: 14px; font-weight: 700; color: var(--white);
-    margin-bottom: 4px;
-  }
-
-  .badge-rating {
-    font-size: 13px; font-weight: 600; margin-bottom: 4px;
-  }
+  .badge-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .badge-rating { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
   .badge-rating .shown { color: var(--red); }
   .badge-rating .arrow { color: var(--muted); margin: 0 4px; }
   .badge-rating .real { color: var(--green); }
-
-  .badge-sub {
-    font-size: 12px; color: var(--muted);
-  }
+  .badge-sub { font-size: 12px; color: var(--muted); }
   .badge-sub a { color: var(--amber); text-decoration: none; }
-
-  .badge-close {
-    position: absolute; top: 14px; right: 14px;
-    font-size: 16px; color: var(--muted); cursor: pointer;
-    background: none; border: none;
-  }
-
-  /* Map illustration behind badge */
-  .hero-visual {
-    display: flex; flex-direction: column;
-    align-items: flex-start; gap: 16px;
-  }
-
-  .map-mock {
-    width: 100%; height: 180px;
-    background: var(--navy2);
-    border: 1px solid var(--border);
-    position: relative; overflow: hidden;
-    margin-bottom: 4px;
-  }
-
-  .map-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 32px 32px;
-    opacity: 0.5;
-  }
-
-  .map-pin {
-    position: absolute;
-    font-size: 24px;
-  }
-  .map-pin-1 { top: 40px; left: 80px; }
-  .map-pin-2 { top: 90px; left: 200px; }
-  .map-pin-3 { top: 60px; left: 310px; }
-  .map-label {
-    position: absolute;
-    bottom: 12px; left: 12px;
-    font-size: 11px; color: var(--muted);
-    background: var(--navy2);
-    padding: 3px 8px;
-    border: 1px solid var(--border);
-  }
-
-  /* ── STATS BAR ── */
-  .stats-bar {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: var(--navy2);
-  }
-
-  .stats-inner {
-    max-width: 1120px; margin: 0 auto;
-    padding: 0 48px;
-    display: flex; gap: 0;
-  }
-
-  .stat-item {
-    flex: 1;
-    padding: 32px 0;
-    border-right: 1px solid var(--border);
-  }
+  .badge-close { position: absolute; top: 14px; right: 14px; font-size: 16px; color: var(--muted); cursor: pointer; background: none; border: none; }
+  .hero-visual { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .map-mock { width: 100%; height: 180px; background: var(--navy2); border: 1px solid var(--border); position: relative; overflow: hidden; margin-bottom: 4px; }
+  .map-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.5; }
+  .map-pin { position: absolute; font-size: 24px; }
+  .map-pin-1 { top: 40px; left: 80px; } .map-pin-2 { top: 90px; left: 200px; } .map-pin-3 { top: 60px; left: 310px; }
+  .map-label { position: absolute; bottom: 12px; left: 12px; font-size: 11px; color: var(--muted); background: var(--navy2); padding: 3px 8px; border: 1px solid var(--border); }
+  .stats-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--navy2); }
+  .stats-inner { max-width: 1120px; margin: 0 auto; padding: 0 48px; display: flex; gap: 0; }
+  .stat-item { flex: 1; padding: 32px 0; border-right: 1px solid var(--border); }
   .stat-item:last-child { border-right: none; }
-
-  .stat-num {
-    font-size: 40px; font-weight: 900; letter-spacing: -0.04em;
-    color: var(--amber); line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .stat-label {
-    font-size: 13px; color: var(--muted);
-  }
-
-  /* ── HOW IT WORKS ── */
-  .section {
-    max-width: 1120px; margin: 0 auto;
-    padding: 96px 48px;
-  }
-
-  .section-title {
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 900; letter-spacing: -0.03em;
-    margin-bottom: 56px;
-  }
-
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .step {
-    background: var(--navy);
-    padding: 40px 36px;
-  }
-
-  .step-num {
-    font-size: 48px; font-weight: 900; letter-spacing: -0.04em;
-    color: var(--border); line-height: 1;
-    margin-bottom: 20px;
-  }
-
-  .step h3 {
-    font-size: 18px; font-weight: 700;
-    margin-bottom: 12px;
-  }
-
-  .step p {
-    font-size: 14px; color: var(--muted); line-height: 1.7;
-  }
-
-  /* ── WHAT WE DETECT ── */
-  .detect-section {
-    background: var(--navy2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .detect-inner {
-    max-width: 1120px; margin: 0 auto;
-    padding: 96px 48px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-    align-items: center;
-  }
-
-  .detect-inner h2 {
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 900; letter-spacing: -0.03em;
-    margin-bottom: 20px;
-  }
-
-  .detect-inner p {
-    color: var(--muted); font-size: 16px; line-height: 1.75;
-    margin-bottom: 16px;
-  }
-
+  .stat-num { font-size: 40px; font-weight: 900; letter-spacing: -0.04em; color: var(--amber); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 13px; color: var(--muted); }
+  .section { max-width: 1120px; margin: 0 auto; padding: 96px 48px; }
+  .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 56px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .step { background: var(--navy); padding: 40px 36px; }
+  .step-num { font-size: 48px; font-weight: 900; letter-spacing: -0.04em; color: var(--border); line-height: 1; margin-bottom: 20px; }
+  .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+  .step p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .detect-section { background: var(--navy2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .detect-inner { max-width: 1120px; margin: 0 auto; padding: 96px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .detect-inner h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 20px; }
+  .detect-inner p { color: var(--muted); font-size: 16px; line-height: 1.75; margin-bottom: 16px; }
   .lang-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
-
-  .lang-tag {
-    font-size: 13px; font-weight: 500;
-    padding: 5px 14px;
-    border: 1px solid var(--border);
-    color: var(--muted);
-  }
-
-  .example-banner {
-    background: var(--navy);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--amber);
-    padding: 16px 20px;
-    margin-bottom: 12px;
-  }
-
-  .example-banner-lang {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
-    color: var(--amber); text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .example-banner-text {
-    font-size: 13px; color: var(--white); line-height: 1.5;
-    font-style: italic;
-  }
-
-  /* ── PRIVACY ── */
-  .privacy-section {
-    max-width: 1120px; margin: 0 auto;
-    padding: 96px 48px;
-  }
-
-  .privacy-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
-    background: var(--border); border: 1px solid var(--border);
-    margin-top: 48px;
-  }
-
-  .privacy-item {
-    background: var(--navy);
-    padding: 32px 36px;
-    display: flex; gap: 16px; align-items: flex-start;
-  }
-
-  .privacy-icon {
-    font-size: 24px; flex-shrink: 0; margin-top: 2px;
-  }
-
-  .privacy-item h4 {
-    font-size: 16px; font-weight: 700; margin-bottom: 6px;
-  }
-
-  .privacy-item p {
-    font-size: 14px; color: var(--muted); line-height: 1.6;
-  }
-
-  /* ── EMAIL SIGNUP ── */
-  .signup-section {
-    background: var(--navy2);
-    border-top: 1px solid var(--border);
-  }
-
-  .signup-inner {
-    max-width: 640px; margin: 0 auto;
-    padding: 96px 48px;
-    text-align: left;
-  }
-
-  .signup-inner h2 {
-    font-size: clamp(28px, 4vw, 40px);
-    font-weight: 900; letter-spacing: -0.03em;
-    margin-bottom: 16px;
-  }
-
-  .signup-inner p {
-    color: var(--muted); font-size: 16px; margin-bottom: 32px;
-  }
-
-  .email-form {
-    display: flex; gap: 0;
-  }
-
-  .email-form input {
-    flex: 1;
-    background: var(--navy);
-    border: 1px solid var(--border);
-    border-right: none;
-    color: var(--white);
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    padding: 14px 18px;
-    outline: none;
-  }
+  .lang-tag { font-size: 13px; font-weight: 500; padding: 5px 14px; border: 1px solid var(--border); color: var(--muted); }
+  .example-banner { background: var(--navy); border: 1px solid var(--border); border-left: 3px solid var(--amber); padding: 16px 20px; margin-bottom: 12px; }
+  .example-banner-lang { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: var(--amber); text-transform: uppercase; margin-bottom: 8px; }
+  .example-banner-text { font-size: 13px; color: var(--white); line-height: 1.5; font-style: italic; }
+  .privacy-section { max-width: 1120px; margin: 0 auto; padding: 96px 48px; }
+  .privacy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 48px; }
+  .privacy-item { background: var(--navy); padding: 32px 36px; display: flex; gap: 16px; align-items: flex-start; }
+  .privacy-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+  .privacy-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .privacy-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .signup-section { background: var(--navy2); border-top: 1px solid var(--border); }
+  .signup-inner { max-width: 640px; margin: 0 auto; padding: 96px 48px; text-align: left; }
+  .signup-inner h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 16px; }
+  .signup-inner p { color: var(--muted); font-size: 16px; margin-bottom: 32px; }
+  .email-form { display: flex; gap: 0; }
+  .email-form input { flex: 1; background: var(--navy); border: 1px solid var(--border); border-right: none; color: var(--white); font-family: 'Inter', sans-serif; font-size: 15px; padding: 14px 18px; outline: none; }
   .email-form input::placeholder { color: var(--muted); }
   .email-form input:focus { border-color: var(--amber); }
-
-  .email-form button {
-    background: var(--amber); color: var(--navy);
-    font-family: 'Inter', sans-serif;
-    font-weight: 700; font-size: 15px;
-    padding: 14px 28px;
-    border: none; cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.15s;
-  }
+  .email-form button { background: var(--amber); color: var(--navy); font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px; padding: 14px 28px; border: none; cursor: pointer; white-space: nowrap; transition: background 0.15s; }
   .email-form button:hover { background: var(--amber2); }
-
-  .form-note {
-    font-size: 12px; color: var(--muted); margin-top: 12px;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 48px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 16px;
-    max-width: 1120px; margin: 0 auto;
-  }
-
-  .footer-logo {
-    font-weight: 900; font-size: 16px;
-    color: var(--white); text-decoration: none;
-  }
+  .form-note { font-size: 12px; color: var(--muted); margin-top: 12px; }
+  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; max-width: 1120px; margin: 0 auto; }
+  .footer-logo { font-weight: 900; font-size: 16px; color: var(--white); text-decoration: none; }
   .footer-logo span { color: var(--amber); }
-
   .footer-links { display: flex; gap: 24px; }
-  .footer-links a {
-    font-size: 13px; color: var(--muted); text-decoration: none;
-  }
+  .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
   .footer-links a:hover { color: var(--white); }
-
-  .footer-disclaimer {
-    width: 100%;
-    font-size: 12px; color: var(--muted); line-height: 1.6;
-    padding-top: 16px; border-top: 1px solid var(--border);
-    margin-top: 8px;
-  }
-
-  /* ── RESPONSIVE ── */
+  .footer-disclaimer { width: 100%; font-size: 12px; color: var(--muted); line-height: 1.6; padding-top: 16px; border-top: 1px solid var(--border); margin-top: 8px; }
   @media (max-width: 768px) {
-    nav { padding: 0 20px; }
-    .nav-right { gap: 16px; }
-    nav a.nav-link { display: none; }
-
-    .hero {
-      grid-template-columns: 1fr;
-      padding: 56px 20px 48px;
-      gap: 40px;
-    }
-
-    .hero-visual { order: -1; }
-    .hero h1 { font-size: 36px; }
-    .hero-sub { font-size: 16px; }
-
+    nav { padding: 0 20px; } .nav-right { gap: 12px; } nav a.nav-link { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 56px 20px 48px; gap: 40px; }
+    .hero-visual { order: -1; } .hero h1 { font-size: 36px; } .hero-sub { font-size: 16px; }
     .stats-inner { padding: 0 20px; flex-wrap: wrap; }
     .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 0; }
-
-    .section { padding: 56px 20px; }
-    .steps { grid-template-columns: 1fr; }
-
-    .detect-inner {
-      grid-template-columns: 1fr;
-      padding: 56px 20px;
-      gap: 40px;
-    }
-
-    .privacy-grid { grid-template-columns: 1fr; }
-    .privacy-section { padding: 56px 20px; }
-
+    .section { padding: 56px 20px; } .steps { grid-template-columns: 1fr; }
+    .detect-inner { grid-template-columns: 1fr; padding: 56px 20px; gap: 40px; }
+    .privacy-grid { grid-template-columns: 1fr; } .privacy-section { padding: 56px 20px; }
     .signup-inner { padding: 56px 20px; }
     .email-form { flex-direction: column; }
     .email-form input { border-right: 1px solid var(--border); border-bottom: none; }
     .email-form button { padding: 14px; }
-
     footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+    .lang-btn { padding: 4px 7px; }
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="/" class="nav-logo">Real<span>Score</span></a>
+  <a href="/" class="nav-logo">Real<span>Rating</span></a>
   <div class="nav-right">
-    <a href="#how-it-works" class="nav-link">How it works</a>
-    <a href="#privacy" class="nav-link">Privacy</a>
-    <a href="privacy.html" class="nav-link">Privacy Policy</a>
-    <a href="https://chromewebstore.google.com/detail/realscore/EXTENSION_ID" class="btn-install" target="_blank" rel="noopener">
-      ⬇ Add to Chrome — Free
-    </a>
+    <a href="#how-it-works" class="nav-link" data-i18n="nav_how">Wie es funktioniert</a>
+    <a href="#privacy" class="nav-link" data-i18n="nav_privacy">Datenschutz</a>
+    <a href="privacy.html" class="nav-link" data-i18n="nav_policy">Datenschutzrichtlinie</a>
+    <div class="lang-switcher" aria-label="Sprache">
+      <button class="lang-btn active" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('tr')">TR</button>
+    </div>
+    <a href="https://chromewebstore.google.com/detail/realrating/EXTENSION_ID" class="btn-install" target="_blank" rel="noopener" data-i18n="btn_install">&#x2B07; Zu Chrome hinzuf&#xFC;gen &#x2014; Kostenlos</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-text">
-    <p class="hero-eyebrow">Transparency for German Google Maps</p>
-    <h1>The rating<br>Google <em>hides.</em><br>We show.</h1>
-    <p class="hero-sub">
-      In Germany, businesses can have reviews removed via defamation complaints.
-      RealScore detects these removals and estimates what the real rating would be.
-    </p>
+    <p class="hero-eyebrow" data-i18n="hero_eyebrow">Transparenz f&#xFC;r Google Maps Deutschland</p>
+    <h1 data-i18n-html="hero_h1">Die Bewertung,<br>die Google <em>versteckt.</em><br>Wir zeigen sie.</h1>
+    <p class="hero-sub" data-i18n="hero_sub">In Deutschland k&#xF6;nnen Unternehmen Bewertungen per Verleumdungsbeschwerde entfernen lassen. RealRating erkennt diese Entfernungen und sch&#xE4;tzt, wie die echte Bewertung aussehen w&#xFC;rde.</p>
     <div class="hero-actions">
-      <a href="https://chromewebstore.google.com/detail/realscore/EXTENSION_ID" class="btn-primary" target="_blank" rel="noopener">
-        ⬇ Add to Chrome — Free
-      </a>
-      <span class="hero-note">Chrome · No account required</span>
+      <a href="https://chromewebstore.google.com/detail/realrating/EXTENSION_ID" class="btn-primary" target="_blank" rel="noopener" data-i18n="btn_install">&#x2B07; Zu Chrome hinzuf&#xFC;gen &#x2014; Kostenlos</a>
+      <span class="hero-note" data-i18n="hero_note">Chrome &middot; Kein Konto erforderlich</span>
     </div>
   </div>
-
   <div class="hero-visual">
     <div class="map-mock">
       <div class="map-grid"></div>
-      <div class="map-pin map-pin-1">📍</div>
-      <div class="map-pin map-pin-2">📍</div>
-      <div class="map-pin map-pin-3">📍</div>
+      <div class="map-pin map-pin-1">&#x1F4CD;</div>
+      <div class="map-pin map-pin-2">&#x1F4CD;</div>
+      <div class="map-pin map-pin-3">&#x1F4CD;</div>
       <div class="map-label">Hamburg, Deutschland</div>
     </div>
-
     <div class="badge-demo">
-      <div class="badge-demo-label">RealScore badge — live example</div>
-      <button class="badge-close" disabled>×</button>
+      <div class="badge-demo-label" data-i18n="badge_label">RealRating-Badge &#x2014; Live-Beispiel</div>
+      <button class="badge-close" disabled>&#xD7;</button>
       <div class="badge-row">
-        <div class="badge-icon">⚠️</div>
+        <div class="badge-icon">&#x26A0;&#xFE0F;</div>
         <div>
-          <div class="badge-title">11–20 reviews removed</div>
+          <div class="badge-title" data-i18n="badge_title">11&#x2013;20 Bewertungen entfernt</div>
           <div class="badge-rating">
-            <span class="shown">4.7★</span>
-            <span class="arrow">→</span>
-            <span class="real">~4.61★ estimated real rating</span>
+            <span class="shown">4.7&#x2605;</span>
+            <span class="arrow">&#x2192;</span>
+            <span class="real" data-i18n="badge_real">~4.61&#x2605; gesch&#xE4;tzte echte Bewertung</span>
           </div>
           <div class="badge-sub">
-            Germany defamation complaint · <a href="#">details</a>
+            <span data-i18n="badge_sub">Deutsche Verleumdungsbeschwerde</span> &middot; <a href="#" data-i18n="badge_details">Details</a>
           </div>
         </div>
       </div>
@@ -544,154 +177,266 @@
   </div>
 </section>
 
-<!-- STATS -->
 <div class="stats-bar">
   <div class="stats-inner">
-    <div class="stat-item" style="padding-right:48px">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Free, forever</div>
-    </div>
-    <div class="stat-item" style="padding: 32px 48px">
-      <div class="stat-num">0</div>
-      <div class="stat-label">Data sent to servers</div>
-    </div>
-    <div class="stat-item" style="padding: 32px 48px">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Languages supported (DE · EN · TR)</div>
-    </div>
-    <div class="stat-item" style="padding: 32px 0 32px 48px">
-      <div class="stat-num">&lt;1s</div>
-      <div class="stat-label">Detection time per business</div>
-    </div>
+    <div class="stat-item" style="padding-right:48px"><div class="stat-num">100%</div><div class="stat-label" data-i18n="stat1">Kostenlos, f&#xFC;r immer</div></div>
+    <div class="stat-item" style="padding:32px 48px"><div class="stat-num">0</div><div class="stat-label" data-i18n="stat2">Daten an Server &#xFC;bermittelt</div></div>
+    <div class="stat-item" style="padding:32px 48px"><div class="stat-num">3</div><div class="stat-label" data-i18n="stat3">Unterst&#xFC;tzte Sprachen (DE &middot; EN &middot; TR)</div></div>
+    <div class="stat-item" style="padding:32px 0 32px 48px"><div class="stat-num">&lt;1s</div><div class="stat-label" data-i18n="stat4">Erkennungszeit pro Betrieb</div></div>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
 <section id="how-it-works" class="section">
-  <h2 class="section-title">How RealScore works</h2>
+  <h2 class="section-title" data-i18n="hiw_title">So funktioniert RealRating</h2>
   <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h3>Open any business on Maps</h3>
-      <p>RealScore runs automatically in the background. No setup, no clicking — just browse Google Maps as usual.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h3>Detection in under a second</h3>
-      <p>If a defamation removal notice exists, RealScore finds it — even when Google buries it in the Reviews tab where most users never look.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h3>See the real picture</h3>
-      <p>A badge shows how many reviews were removed and estimates the rating those reviews would produce if counted — calculated using the same method as Pieter Levels' Real Rating Calculator.</p>
-    </div>
+    <div class="step"><div class="step-num">01</div><h3 data-i18n="step1_h">Beliebiges Unternehmen auf Maps &#xF6;ffnen</h3><p data-i18n="step1_p">RealRating l&#xE4;uft automatisch im Hintergrund. Kein Setup, kein Klicken &#x2014; einfach Google Maps wie gewohnt nutzen.</p></div>
+    <div class="step"><div class="step-num">02</div><h3 data-i18n="step2_h">Erkennung in unter einer Sekunde</h3><p data-i18n="step2_p">Falls ein Hinweis auf eine Verleumdungsentfernung existiert, findet RealRating ihn &#x2014; auch wenn Google ihn im Bewertungs-Tab versteckt, wo die meisten Nutzer nie hinschauen.</p></div>
+    <div class="step"><div class="step-num">03</div><h3 data-i18n="step3_h">Das echte Bild sehen</h3><p data-i18n="step3_p">Ein Badge zeigt, wie viele Bewertungen entfernt wurden, und sch&#xE4;tzt die Bewertung, die diese Bewertungen ergeben w&#xFC;rden &#x2014; berechnet nach der gleichen Methode wie Pieter Levels&#x2019; Real Rating Calculator.</p></div>
   </div>
 </section>
 
-<!-- WHAT WE DETECT -->
 <div class="detect-section">
   <div class="detect-inner">
     <div>
-      <h2>Detected in three languages</h2>
-      <p>Google Maps shows the removal notice in the UI language of the user — not always German. RealScore detects the notice regardless of which language Maps is set to.</p>
-      <p>All number formats are handled: "11 to 20", "Two to five", "Zwei bis fünf", "Over 250", "Eine Bewertung".</p>
+      <h2 data-i18n="det_title">In drei Sprachen erkannt</h2>
+      <p data-i18n="det_p1">Google Maps zeigt den Entfernungshinweis in der UI-Sprache des Nutzers &#x2014; nicht immer auf Deutsch. RealRating erkennt den Hinweis unabh&#xE4;ngig davon, auf welche Sprache Maps eingestellt ist.</p>
+      <p data-i18n="det_p2">Alle Zahlenformate werden unterst&#xFC;tzt: &#x201E;11 to 20&#x201C;, &#x201E;Two to five&#x201C;, &#x201E;Zwei bis f&#xFC;nf&#x201C;, &#x201E;Over 250&#x201C;, &#x201E;Eine Bewertung&#x201C;.</p>
       <div class="lang-tags">
-        <span class="lang-tag">🇩🇪 Deutsch</span>
-        <span class="lang-tag">🇬🇧 English</span>
-        <span class="lang-tag">🇹🇷 Türkçe</span>
+        <span class="lang-tag">&#x1F1E9;&#x1F1EA; Deutsch</span>
+        <span class="lang-tag">&#x1F1EC;&#x1F1E7; English</span>
+        <span class="lang-tag">&#x1F1F9;&#x1F1F7; T&#xFC;rk&#xE7;e</span>
       </div>
     </div>
     <div>
-      <div class="example-banner">
-        <div class="example-banner-lang">DE</div>
-        <div class="example-banner-text">"Zwei bis fünf Bewertungen aufgrund von Beschwerden wegen Diffamierung entfernt."</div>
-      </div>
-      <div class="example-banner">
-        <div class="example-banner-lang">EN</div>
-        <div class="example-banner-text">"11 to 20 reviews removed due to defamation complaints."</div>
-      </div>
-      <div class="example-banner">
-        <div class="example-banner-lang">TR</div>
-        <div class="example-banner-text">"İftira şikayetleri nedeniyle 11 ila 20 yorum kaldırıldı."</div>
-      </div>
+      <div class="example-banner"><div class="example-banner-lang">DE</div><div class="example-banner-text">&#x201E;Zwei bis f&#xFC;nf Bewertungen aufgrund von Beschwerden wegen Diffamierung entfernt.&#x201C;</div></div>
+      <div class="example-banner"><div class="example-banner-lang">EN</div><div class="example-banner-text">&ldquo;11 to 20 reviews removed due to defamation complaints.&rdquo;</div></div>
+      <div class="example-banner"><div class="example-banner-lang">TR</div><div class="example-banner-text">&#x201C;&#x130;ftira &#x15F;ikayetleri nedeniyle 11 ila 20 yorum kald&#x131;r&#x131;ld&#x131;.&#x201D;</div></div>
     </div>
   </div>
 </div>
 
-<!-- PRIVACY -->
 <section id="privacy" class="privacy-section">
-  <h2 class="section-title">Built around your privacy</h2>
+  <h2 class="section-title" data-i18n="priv_title">Ihre Privatsph&#xE4;re zuerst</h2>
   <div class="privacy-grid">
-    <div class="privacy-item">
-      <div class="privacy-icon">🔒</div>
-      <div>
-        <h4>No server, no account</h4>
-        <p>All detections are stored only in your own browser. Nothing leaves your device. No account required, ever.</p>
-      </div>
-    </div>
-    <div class="privacy-item">
-      <div class="privacy-icon">👁</div>
-      <div>
-        <h4>Only public data</h4>
-        <p>RealScore reads only information Google Maps already displays publicly. No private data, no browsing history, no personal identifiers.</p>
-      </div>
-    </div>
-    <div class="privacy-item">
-      <div class="privacy-icon">🗑</div>
-      <div>
-        <h4>Delete anytime</h4>
-        <p>Open the extension popup and hit "Clear all records." Everything is gone immediately. No recovery, no backup — you're in full control.</p>
-      </div>
-    </div>
-    <div class="privacy-item">
-      <div class="privacy-icon">📋</div>
-      <div>
-        <h4>Minimal permissions</h4>
-        <p>RealScore requests only <code style="font-size:12px;color:var(--amber)">storage</code> and access to <code style="font-size:12px;color:var(--amber)">google.com/maps/*</code> — nothing broader.</p>
-      </div>
-    </div>
+    <div class="privacy-item"><div class="privacy-icon">&#x1F512;</div><div><h4 data-i18n="priv1_h">Kein Server, kein Konto</h4><p data-i18n="priv1_p">Alle Erkennungen werden nur in Ihrem eigenen Browser gespeichert. Nichts verl&#xE4;sst Ihr Ger&#xE4;t. Kein Konto erforderlich, niemals.</p></div></div>
+    <div class="privacy-item"><div class="privacy-icon">&#x1F441;</div><div><h4 data-i18n="priv2_h">Nur &#xF6;ffentliche Daten</h4><p data-i18n="priv2_p">RealRating liest nur Informationen, die Google Maps bereits &#xF6;ffentlich anzeigt. Keine privaten Daten, kein Browserverlauf, keine pers&#xF6;nlichen Kennzeichner.</p></div></div>
+    <div class="privacy-item"><div class="privacy-icon">&#x1F5D1;</div><div><h4 data-i18n="priv3_h">Jederzeit l&#xF6;schen</h4><p data-i18n="priv3_p">&#xD6;ffnen Sie das Extension-Popup und klicken Sie auf &#x201E;Alle Eintr&#xE4;ge l&#xF6;schen.&#x201C; Alles ist sofort weg. Keine Wiederherstellung, kein Backup &#x2014; Sie haben die volle Kontrolle.</p></div></div>
+    <div class="privacy-item"><div class="privacy-icon">&#x1F4CB;</div><div><h4 data-i18n="priv4_h">Minimale Berechtigungen</h4><p data-i18n="priv4_p">RealRating ben&#xF6;tigt nur <code style="font-size:12px;color:var(--amber)">storage</code> und Zugriff auf <code style="font-size:12px;color:var(--amber)">google.com/maps/*</code> &#x2014; nichts dar&#xFC;ber hinaus.</p></div></div>
   </div>
 </section>
 
-<!-- EMAIL SIGNUP -->
 <div class="signup-section">
   <div class="signup-inner">
-    <h2>Stay in the loop</h2>
-    <p>New features, transparency reports, and updates on German defamation removals — delivered occasionally, never spam.</p>
+    <h2 data-i18n="signup_h">Bleib auf dem Laufenden</h2>
+    <p data-i18n="signup_p">Neue Funktionen, Transparenzberichte und Updates zu deutschen Verleumdungsentfernungen &#x2014; gelegentlich, niemals Spam.</p>
     <form class="email-form" onsubmit="handleSubmit(event)">
-      <input type="email" placeholder="your@email.com" required />
-      <button type="submit">Notify me</button>
+      <input type="email" placeholder="ihre@email.de" required data-i18n-placeholder="email_ph" />
+      <button type="submit" data-i18n="signup_btn">Benachrichtigen</button>
     </form>
-    <p class="form-note">No spam. Unsubscribe anytime. GDPR-compliant.</p>
+    <p class="form-note" data-i18n="signup_note">Kein Spam. Jederzeit abmelden. DSGVO-konform.</p>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
-  <a href="/" class="footer-logo">Real<span>Score</span></a>
+  <a href="/" class="footer-logo">Real<span>Rating</span></a>
   <div class="footer-links">
-    <a href="https://chromewebstore.google.com/detail/realscore/EXTENSION_ID" target="_blank" rel="noopener">Chrome Extension</a>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="mailto:hello@realrating.de">Contact</a>
+    <a href="https://chromewebstore.google.com/detail/realrating/EXTENSION_ID" target="_blank" rel="noopener" data-i18n="footer_ext">Chrome Extension</a>
+    <a href="privacy.html" data-i18n="nav_policy">Datenschutzrichtlinie</a>
+    <a href="mailto:hello@realrating.de" data-i18n="footer_contact">Kontakt</a>
   </div>
-  <p class="footer-disclaimer">
-    RealScore is an independent tool and is not affiliated with, endorsed by, or sponsored by Google LLC or Google Maps.
-    All detected information is publicly displayed by Google Maps. RealScore does not collect, store, or transmit personal data.
-    © 2026 realrating.de
-  </p>
+  <p class="footer-disclaimer" data-i18n="footer_disc">RealRating ist ein unabh&#xE4;ngiges Tool und steht in keiner Verbindung zu Google LLC oder Google Maps. Alle erkannten Informationen werden von Google Maps &#xF6;ffentlich angezeigt. RealRating erfasst, speichert oder &#xFC;bertr&#xE4;gt keine personenbezogenen Daten. &#xA9; 2026 realrating.de</p>
 </footer>
 
 <script>
+const T = {
+  de: {
+    nav_how:      `Wie es funktioniert`,
+    nav_privacy:  `Datenschutz`,
+    nav_policy:   `Datenschutzrichtlinie`,
+    btn_install:  `⬇ Zu Chrome hinzufügen — Kostenlos`,
+    hero_eyebrow: `TRANSPARENZ FÜR GOOGLE MAPS DEUTSCHLAND`,
+    hero_h1:      `Die Bewertung,<br>die Google <em>versteckt.</em><br>Wir zeigen sie.`,
+    hero_sub:     `In Deutschland können Unternehmen Bewertungen per Verleumdungsbeschwerde entfernen lassen. RealRating erkennt diese Entfernungen und schätzt, wie die echte Bewertung aussehen würde.`,
+    hero_note:    `Chrome · Kein Konto erforderlich`,
+    badge_label:  `RealRating-Badge — Live-Beispiel`,
+    badge_title:  `11–20 Bewertungen entfernt`,
+    badge_real:   `~4.61★ geschätzte echte Bewertung`,
+    badge_sub:    `Deutsche Verleumdungsbeschwerde`,
+    badge_details:`Details`,
+    stat1: `Kostenlos, für immer`,
+    stat2: `Daten an Server übermittelt`,
+    stat3: `Unterstützte Sprachen (DE · EN · TR)`,
+    stat4: `Erkennungszeit pro Betrieb`,
+    hiw_title:    `So funktioniert RealRating`,
+    step1_h:      `Beliebiges Unternehmen auf Maps öffnen`,
+    step1_p:      `RealRating läuft automatisch im Hintergrund. Kein Setup, kein Klicken — einfach Google Maps wie gewohnt nutzen.`,
+    step2_h:      `Erkennung in unter einer Sekunde`,
+    step2_p:      `Falls ein Hinweis auf eine Verleumdungsentfernung existiert, findet RealRating ihn — auch wenn Google ihn im Bewertungs-Tab versteckt, wo die meisten Nutzer nie hinschauen.`,
+    step3_h:      `Das echte Bild sehen`,
+    step3_p:      `Ein Badge zeigt, wie viele Bewertungen entfernt wurden, und schätzt die Bewertung, die diese ergeben würden — berechnet nach der gleichen Methode wie Pieter Levels’ Real Rating Calculator.`,
+    det_title:    `In drei Sprachen erkannt`,
+    det_p1:       `Google Maps zeigt den Entfernungshinweis in der UI-Sprache des Nutzers — nicht immer auf Deutsch. RealRating erkennt den Hinweis unabhängig davon, auf welche Sprache Maps eingestellt ist.`,
+    det_p2:       `Alle Zahlenformate werden unterstützt: „11 to 20“, „Two to five“, „Zwei bis fünf“, „Over 250“, „Eine Bewertung“.`,
+    priv_title:   `Ihre Privatsphäre zuerst`,
+    priv1_h:      `Kein Server, kein Konto`,
+    priv1_p:      `Alle Erkennungen werden nur in Ihrem eigenen Browser gespeichert. Nichts verlässt Ihr Gerät. Kein Konto erforderlich, niemals.`,
+    priv2_h:      `Nur öffentliche Daten`,
+    priv2_p:      `RealRating liest nur Informationen, die Google Maps bereits öffentlich anzeigt. Keine privaten Daten, kein Browserverlauf, keine persönlichen Kennzeichner.`,
+    priv3_h:      `Jederzeit löschen`,
+    priv3_p:      `Öffnen Sie das Extension-Popup und klicken Sie auf „Alle Einträge löschen.“ Alles ist sofort weg. Keine Wiederherstellung, kein Backup — Sie haben die volle Kontrolle.`,
+    priv4_h:      `Minimale Berechtigungen`,
+    priv4_p:      `RealRating benötigt nur <code style="font-size:12px;color:var(--amber)">storage</code> und Zugriff auf <code style="font-size:12px;color:var(--amber)">google.com/maps/*</code> — nichts darüber hinaus.`,
+    signup_h:     `Bleib auf dem Laufenden`,
+    signup_p:     `Neue Funktionen, Transparenzberichte und Updates zu deutschen Verleumdungsentfernungen — gelegentlich, niemals Spam.`,
+    email_ph:     `ihre@email.de`,
+    signup_btn:   `Benachrichtigen`,
+    signup_note:  `Kein Spam. Jederzeit abmelden. DSGVO-konform.`,
+    footer_ext:   `Chrome Extension`,
+    footer_contact:`Kontakt`,
+    footer_disc:  `RealRating ist ein unabhängiges Tool und steht in keiner Verbindung zu Google LLC oder Google Maps. Alle erkannten Informationen werden von Google Maps öffentlich angezeigt. RealRating erfasst, speichert oder überträgt keine personenbezogenen Daten. © 2026 realrating.de`,
+    success_msg:  `✓ Du bist auf der Liste`,
+  },
+  en: {
+    nav_how:      `How it works`,
+    nav_privacy:  `Privacy`,
+    nav_policy:   `Privacy Policy`,
+    btn_install:  `⬇ Add to Chrome — Free`,
+    hero_eyebrow: `TRANSPARENCY FOR GERMAN GOOGLE MAPS`,
+    hero_h1:      `The rating<br>Google <em>hides.</em><br>We show.`,
+    hero_sub:     `In Germany, businesses can have reviews removed via defamation complaints. RealRating detects these removals and estimates what the real rating would be.`,
+    hero_note:    `Chrome · No account required`,
+    badge_label:  `RealRating badge — live example`,
+    badge_title:  `11–20 reviews removed`,
+    badge_real:   `~4.61★ estimated real rating`,
+    badge_sub:    `Germany defamation complaint`,
+    badge_details:`details`,
+    stat1: `Free, forever`,
+    stat2: `Data sent to servers`,
+    stat3: `Languages supported (DE · EN · TR)`,
+    stat4: `Detection time per business`,
+    hiw_title:    `How RealRating works`,
+    step1_h:      `Open any business on Maps`,
+    step1_p:      `RealRating runs automatically in the background. No setup, no clicking — just browse Google Maps as usual.`,
+    step2_h:      `Detection in under a second`,
+    step2_p:      `If a defamation removal notice exists, RealRating finds it — even when Google buries it in the Reviews tab where most users never look.`,
+    step3_h:      `See the real picture`,
+    step3_p:      `A badge shows how many reviews were removed and estimates the rating those reviews would produce if counted — calculated using the same method as Pieter Levels’ Real Rating Calculator.`,
+    det_title:    `Detected in three languages`,
+    det_p1:       `Google Maps shows the removal notice in the UI language of the user — not always German. RealRating detects the notice regardless of which language Maps is set to.`,
+    det_p2:       `All number formats are handled: “11 to 20”, “Two to five”, “Zwei bis fünf”, “Over 250”, “Eine Bewertung”.`,
+    priv_title:   `Built around your privacy`,
+    priv1_h:      `No server, no account`,
+    priv1_p:      `All detections are stored only in your own browser. Nothing leaves your device. No account required, ever.`,
+    priv2_h:      `Only public data`,
+    priv2_p:      `RealRating reads only information Google Maps already displays publicly. No private data, no browsing history, no personal identifiers.`,
+    priv3_h:      `Delete anytime`,
+    priv3_p:      `Open the extension popup and hit “Clear all records.” Everything is gone immediately. No recovery, no backup — you’re in full control.`,
+    priv4_h:      `Minimal permissions`,
+    priv4_p:      `RealRating requests only <code style="font-size:12px;color:var(--amber)">storage</code> and access to <code style="font-size:12px;color:var(--amber)">google.com/maps/*</code> — nothing broader.`,
+    signup_h:     `Stay in the loop`,
+    signup_p:     `New features, transparency reports, and updates on German defamation removals — delivered occasionally, never spam.`,
+    email_ph:     `your@email.com`,
+    signup_btn:   `Notify me`,
+    signup_note:  `No spam. Unsubscribe anytime. GDPR-compliant.`,
+    footer_ext:   `Chrome Extension`,
+    footer_contact:`Contact`,
+    footer_disc:  `RealRating is an independent tool and is not affiliated with, endorsed by, or sponsored by Google LLC or Google Maps. All detected information is publicly displayed by Google Maps. RealRating does not collect, store, or transmit personal data. © 2026 realrating.de`,
+    success_msg:  `✓ You’re on the list`,
+  },
+  tr: {
+    nav_how:      `Nasıl çalışır`,
+    nav_privacy:  `Gizlilik`,
+    nav_policy:   `Gizlilik Politikası`,
+    btn_install:  `⬇ Chrome’a Ekle — Ücretsiz`,
+    hero_eyebrow: `ALMANYA GOOGLE MAPS İÇİN ŞEFFAFLIK`,
+    hero_h1:      `Google’ın<br><em>gizlediği</em><br>puanı gösteriyoruz.`,
+    hero_sub:     `Almanya’da işletmeler, hakaret şikayetleriyle yorumlarını kaldırtabilir. RealRating bu kaldırmaları tespit eder ve gerçek puanın ne olacağını tahmin eder.`,
+    hero_note:    `Chrome · Hesap gerekmez`,
+    badge_label:  `RealRating rozeti — canlı örnek`,
+    badge_title:  `11–20 yorum kaldırıldı`,
+    badge_real:   `~4.61★ tahmini gerçek puan`,
+    badge_sub:    `Almanya hakaret şikayeti`,
+    badge_details:`detaylar`,
+    stat1: `Ücretsiz, sonsuza kadar`,
+    stat2: `Sunuculara gönderilen veri`,
+    stat3: `Desteklenen diller (DE · EN · TR)`,
+    stat4: `İşletme başına tespit süresi`,
+    hiw_title:    `RealRating nasıl çalışır`,
+    step1_h:      `Haritalar’da herhangi bir işletmeyi aç`,
+    step1_p:      `RealRating arka planda otomatik olarak çalışır. Kurulum yok, tıklama yok — Google Haritalar’ı her zamanki gibi kullan.`,
+    step2_h:      `Bir saniyeden kısa sürede tespit`,
+    step2_p:      `Bir hakaret kaldırma bildirimi varsa, RealRating onu bulur — Google bunu çoğu kullanıcının hiç bakmadığı Yorumlar sekmesine gömse bile.`,
+    step3_h:      `Gerçek resmi gör`,
+    step3_p:      `Bir rozet, kaç yorumun kaldırıldığını gösterir ve sayılsaydı bu yorumların oluşturacağı puanı tahmin eder — Pieter Levels’ Real Rating Calculator yöntemiyle hesaplanır.`,
+    det_title:    `Üç dilde tespit`,
+    det_p1:       `Google Haritalar, kaldırma bildirimini kullanıcının arayüz diline göre gösterir — her zaman Almanca değil. RealRating, Haritalar hangi dile ayarlanmış olursa olsun bildirimi tespit eder.`,
+    det_p2:       `“11 to 20”, “Two to five”, “Zwei bis fünf”, “Over 250”, “Eine Bewertung” gibi tüm sayı formatları desteklenir.`,
+    priv_title:   `Gizliliğiniz önce gelir`,
+    priv1_h:      `Sunucu yok, hesap yok`,
+    priv1_p:      `Tüm tespitler yalnızca kendi tarayıcınızda saklanır. Cihazınızdan hiçbir şey çıkmaz. Hiçbir zaman hesap gerekmez.`,
+    priv2_h:      `Yalnızca herkese açık veri`,
+    priv2_p:      `RealRating yalnızca Google Haritalar’ın zaten herkese açık olarak görüntülediği bilgileri okur. Özel veri yok, tarama geçmişi yok, kişisel tanımlayıcı yok.`,
+    priv3_h:      `İstediğin zaman sil`,
+    priv3_p:      `Eklenti açılır penceresini açın ve “Tüm kayıtları temizle” düğmesine tıklayın. Her şey anlık silinir. Kurtarma yok, yedek yok — tam kontrolü sizde.`,
+    priv4_h:      `Minimum izinler`,
+    priv4_p:      `RealRating yalnızca <code style="font-size:12px;color:var(--amber)">storage</code> ve <code style="font-size:12px;color:var(--amber)">google.com/maps/*</code> erişimi ister — bunun ötesinde hiçbir şey.`,
+    signup_h:     `Haberdar ol`,
+    signup_p:     `Yeni özellikler, şeffaflık raporları ve Almanya’daki hakaret kaldırma güncellemeleri — arada sırada, asla spam değil.`,
+    email_ph:     `eposta@adresin.com`,
+    signup_btn:   `Beni bildir`,
+    signup_note:  `Spam yok. İstediğin zaman abonelikten çık. GDPR uyumlu.`,
+    footer_ext:   `Chrome Eklentisi`,
+    footer_contact:`İletişim`,
+    footer_disc:  `RealRating, Google LLC veya Google Haritalar ile bağlantılı değildir, bunlar tarafından onaylanmamış veya desteklenmemiştir. Tespit edilen tüm bilgiler Google Haritalar tarafından herkese açık olarak görüntülenmektedir. RealRating kişisel veri toplamaz, depolamaz veya iletmez. © 2026 realrating.de`,
+    success_msg:  `✓ Listedesin`,
+  }
+};
+
+let currentLang = 'de';
+try { currentLang = localStorage.getItem('rr_lang') || 'de'; } catch(e) {}
+
+function setLang(lang) {
+  if (!T[lang]) return;
+  currentLang = lang;
+  try { localStorage.setItem('rr_lang', lang); } catch(e) {}
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (T[lang][key] !== undefined) el.textContent = T[lang][key];
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+
+  // priv4_p contains HTML tags — use innerHTML
+  document.querySelectorAll('[data-i18n="priv4_p"]').forEach(function(el) {
+    if (T[lang]['priv4_p'] !== undefined) el.innerHTML = T[lang]['priv4_p'];
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-placeholder');
+    if (T[lang][key] !== undefined) el.placeholder = T[lang][key];
+  });
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+  });
+}
+
+setLang(currentLang);
+
 function handleSubmit(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('button');
-  const input = e.target.querySelector('input');
-  btn.textContent = '✓ You\'re on the list';
+  var btn   = e.target.querySelector('button');
+  var input = e.target.querySelector('input');
+  btn.textContent = T[currentLang].success_msg;
   btn.style.background = 'var(--green)';
   btn.style.color = '#fff';
   input.disabled = true;
   btn.disabled = true;
-  // TODO: POST to your email service (Mailchimp, ConvertKit, etc.)
 }
 </script>
 
