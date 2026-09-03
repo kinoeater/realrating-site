@@ -99,6 +99,7 @@
   .calc-step h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
   .calc-step p { font-size: 14px; color: var(--muted); line-height: 1.6; }
   .calc-caveat { font-size: 14px; color: var(--muted); line-height: 1.7; border-left: 3px solid var(--amber); padding: 14px 20px; background: var(--navy); }
+  .obj-callout { font-size: 14px; color: var(--white); line-height: 1.7; border-left: 3px solid var(--amber); padding: 16px 20px; background: var(--navy2); margin-bottom: 28px; }
 
   .privacy-section { max-width: 1120px; margin: 0 auto; padding: 96px 48px; }
   .privacy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
@@ -168,6 +169,7 @@
     <a href="#how-it-works" class="nav-link" data-i18n="nav_how">Wie es funktioniert</a>
     <a href="#privacy" class="nav-link" data-i18n="nav_privacy">Datenschutz</a>
     <a href="privacy.html" class="nav-link" data-i18n="nav_policy">Datenschutzrichtlinie</a>
+    <a href="#for-businesses" class="nav-link" data-i18n="nav_business">F&#xFC;r Unternehmen</a>
     <div class="lang-switcher" aria-label="Sprache">
       <button class="lang-btn active" onclick="setLang('de')">DE</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -284,15 +286,16 @@
   </div>
 </section>
 
-<div class="objection-section">
+<div class="objection-section" id="for-businesses">
   <div class="objection-inner">
     <h2 data-i18n="obj_h">Sind Sie Inhaber dieses Unternehmens?</h2>
     <p data-i18n="obj_p">Wenn Sie glauben, dass eine hier angezeigte Information fehlerhaft ist, oder Fragen zu einer Bewertungsanzeige haben, kontaktieren Sie uns direkt &#x2014; wir gehen jeder Meldung nach.</p>
     <div class="obj-grid">
       <div class="obj-point"><h4 data-i18n="obj_pt1_h">Eine Sch&#xE4;tzung ist keine Tatsache</h4><p data-i18n="obj_pt1_p">Die gesch&#xE4;tzte echte Bewertung ist eine rechnerische Ann&#xE4;herung, keine verifizierte Aussage &#xFC;ber Ihr Unternehmen.</p></div>
       <div class="obj-point"><h4 data-i18n="obj_pt2_h">Entfernung heisst nicht automatisch negativ</h4><p data-i18n="obj_pt2_p">Bewertungen werden aus vielen Gr&#xFC;nden entfernt &#x2014; auch bei berechtigten Beschwerden gegen gef&#xE4;lschte oder missbr&#xE4;uchliche Eintr&#xE4;ge.</p></div>
-      <div class="obj-point"><h4 data-i18n="obj_pt3_h">Wir pr&#xFC;fen jede Meldung</h4><p data-i18n="obj_pt3_p">Melden Sie uns Unstimmigkeiten &#x2014; wir gehen jedem Fall nach und korrigieren oder erg&#xE4;nzen Informationen bei Bedarf.</p></div>
+      <div class="obj-point"><h4 data-i18n="obj_pt3_h">Wir pr&#xFC;fen jede technische Meldung</h4><p data-i18n="obj_pt3_p">Melden Sie uns Auff&#xE4;lligkeiten in der Anzeige &#x2014; wir gehen jedem Fall nach und beheben Fehler in unserer Erkennung oder Berechnung, wenn n&#xF6;tig.</p></div>
     </div>
+    <p class="obj-callout" data-i18n="obj_callout">Denken Sie, RealRating zeigt bei Ihrem Unternehmen falsche Zahlen an? Schreiben Sie uns &#x2014; wenn unsere Erkennung oder Berechnung fehlerhaft ist, beheben wir das im n&#xE4;chsten Update, f&#xFC;r alle Nutzer. Wichtig: RealRating speichert keine eigenen Daten zu einzelnen Unternehmen und trifft keine Einsch&#xE4;tzung dar&#xFC;ber, ob eine Entfernung berechtigt war &#x2014; die Anzeige spiegelt ausschlie&#xDF;lich den Hinweis, den Google Maps selbst bereits ver&#xF6;ffentlicht.</p>
     <a href="mailto:hello@realrating.de?subject=Gesch%C3%A4ftsinhaber-Meldung" class="btn-primary" data-i18n="obj_btn">Kontakt aufnehmen</a>
   </div>
 </div>
@@ -313,6 +316,7 @@
   <a href="/" class="footer-logo">Real<span>Rating</span></a>
   <div class="footer-links">
     <a href="https://chromewebstore.google.com/detail/realrating/EXTENSION_ID" target="_blank" rel="noopener" data-i18n="footer_ext">Chrome Extension</a>
+    <a href="#for-businesses" data-i18n="nav_business">F&#xFC;r Unternehmen</a>
     <a href="privacy.html" data-i18n="nav_policy">Datenschutzrichtlinie</a>
     <a href="mailto:hello@realrating.de" data-i18n="footer_contact">Kontakt</a>
   </div>
@@ -325,6 +329,7 @@ const T = {
     nav_how:      `Wie es funktioniert`,
     nav_privacy:  `Datenschutz`,
     nav_policy:   `Datenschutzrichtlinie`,
+    nav_business: `Für Unternehmen`,
     btn_install:  `⬇ Zu Chrome hinzufügen — Kostenlos`,
     hero_eyebrow: `TRANSPARENZ FÜR GOOGLE MAPS DEUTSCHLAND`,
     hero_h1:      `Die Bewertung nach den Löschungen.<br>Wir machen sie <em>sichtbar.</em>`,
@@ -389,8 +394,9 @@ const T = {
     obj_pt1_p:    `Die geschätzte echte Bewertung ist eine rechnerische Annäherung, keine verifizierte Aussage über Ihr Unternehmen.`,
     obj_pt2_h:    `Entfernung heisst nicht automatisch negativ`,
     obj_pt2_p:    `Bewertungen werden aus vielen Gründen entfernt — auch bei berechtigten Beschwerden gegen gefälschte oder missbräuchliche Einträge.`,
-    obj_pt3_h:    `Wir prüfen jede Meldung`,
-    obj_pt3_p:    `Melden Sie uns Unstimmigkeiten — wir gehen jedem Fall nach und korrigieren oder ergänzen Informationen bei Bedarf.`,
+    obj_pt3_h:    `Wir prüfen jede technische Meldung`,
+    obj_pt3_p:    `Melden Sie uns Auffälligkeiten in der Anzeige — wir gehen jedem Fall nach und beheben Fehler in unserer Erkennung oder Berechnung, wenn nötig.`,
+    obj_callout:  `Denken Sie, RealRating zeigt bei Ihrem Unternehmen falsche Zahlen an? Schreiben Sie uns — wenn unsere Erkennung oder Berechnung fehlerhaft ist, beheben wir das im nächsten Update, für alle Nutzer. Wichtig: RealRating speichert keine eigenen Daten zu einzelnen Unternehmen und trifft keine Einschätzung darüber, ob eine Entfernung berechtigt war — die Anzeige spiegelt ausschließlich den Hinweis, den Google Maps selbst bereits veröffentlicht.`,
     obj_btn:      `Kontakt aufnehmen`,
     signup_h:     `Bleib auf dem Laufenden`,
     signup_p:     `Neue Funktionen, Transparenzberichte und Updates zu deutschen Verleumdungsentfernungen — gelegentlich, niemals Spam.`,
@@ -406,6 +412,7 @@ const T = {
     nav_how:      `How it works`,
     nav_privacy:  `Privacy`,
     nav_policy:   `Privacy Policy`,
+    nav_business: `For businesses`,
     btn_install:  `⬇ Add to Chrome — Free`,
     hero_eyebrow: `TRANSPARENCY FOR GERMAN GOOGLE MAPS`,
     hero_h1:      `The rating after the removals.<br>We make it <em>visible.</em>`,
@@ -470,8 +477,9 @@ const T = {
     obj_pt1_p:    `The estimated real rating is a calculated approximation, not a verified statement about your business.`,
     obj_pt2_h:    `Removal doesn’t automatically mean something negative`,
     obj_pt2_p:    `Reviews get removed for many reasons — including legitimate complaints against fake or abusive entries.`,
-    obj_pt3_h:    `We review every report`,
-    obj_pt3_p:    `Report any discrepancy — we follow up on every case and correct or add information where needed.`,
+    obj_pt3_h:    `We investigate every technical report`,
+    obj_pt3_p:    `Report anything that looks off — we look into every case and fix errors in our detection or calculation where needed.`,
+    obj_callout:  `Think RealRating is showing incorrect numbers for your business? Let us know — if our detection or calculation is wrong, we'll fix it in the next update, for every user. Important: RealRating doesn't store any data of its own about individual businesses and doesn't judge whether a removal was justified — the display only mirrors the notice Google Maps itself already publishes.`,
     obj_btn:      `Get in touch`,
     signup_h:     `Stay in the loop`,
     signup_p:     `New features, transparency reports, and updates on German defamation removals — delivered occasionally, never spam.`,
@@ -487,6 +495,7 @@ const T = {
     nav_how:      `Nasıl çalışır`,
     nav_privacy:  `Gizlilik`,
     nav_policy:   `Gizlilik Politikası`,
+    nav_business: `İşletmeler için`,
     btn_install:  `⬇ Chrome’a Ekle — Ücretsiz`,
     hero_eyebrow: `ALMANYA GOOGLE MAPS İÇİN ŞEFFAFLIK`,
     hero_h1:      `Silinmelerden sonraki puan.<br>Biz onu <em>görünür</em> kılıyoruz.`,
@@ -551,8 +560,9 @@ const T = {
     obj_pt1_p:    `Tahmini gerçek puan, hesaplamaya dayalı bir yaklaşımdır — işletmeniz hakkında doğrulanmış bir ifade değildir.`,
     obj_pt2_h:    `Kaldırma otomatik olarak olumsuz anlama gelmez`,
     obj_pt2_p:    `Yorumlar birçok nedenden kaldırılır — sahte veya kötüye kullanım amaçlı yorumlara karşı meşru şikayetler de dahil.`,
-    obj_pt3_h:    `Her bildirimi inceliyoruz`,
-    obj_pt3_p:    `Bize tutarsızlıkları bildirin — her vakayı inceliyor, gerektiğinde bilgileri düzeltiyor veya tamamlıyoruz.`,
+    obj_pt3_h:    `Her teknik bildirimi inceliyoruz`,
+    obj_pt3_p:    `Görünümde tuhaf bir şey fark ederseniz bize bildirin — her vakayı inceliyor, gerekirse tespit veya hesaplamamızdaki hataları düzeltiyoruz.`,
+    obj_callout:  `RealRating işletmeniz için yanlış sayılar mı gösteriyor sanıyorsunuz? Bize bildirin — eğer tespitimiz veya hesaplamamız hatalıysa, bir sonraki güncellemede bunu tüm kullanıcılar için düzeltiriz. Önemli: RealRating tek tek işletmeler hakkında kendi verisini saklamaz ve bir kaldırmanın haklı olup olmadığına dair bir değerlendirme yapmaz — gösterilen bilgi yalnızca Google Haritalar'ın zaten kendisinin yayınladığı bildirimi yansıtır.`,
     obj_btn:      `İletişime geç`,
     signup_h:     `Haberdar ol`,
     signup_p:     `Yeni özellikler, şeffaflık raporları ve Almanya’daki hakaret kaldırma güncellemeleri — arada sırada, asla spam değil.`,
