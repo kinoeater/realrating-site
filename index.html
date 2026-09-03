@@ -13,10 +13,11 @@
     --navy:   #0F1B2D; --navy2:  #162438;
     --amber:  #F5A623; --amber2: #E09515;
     --white:  #F8F8F6; --muted:  #8A98A8;
-    --border: #1E2F45; --red:    #DC2626; --green:  #16a34a;
+    --border: #1E2F45; --red:    #DC2626; --green:  #16a34a; --orange: #f97316;
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'Inter', system-ui, sans-serif; background: var(--navy); color: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
   nav { position: sticky; top: 0; z-index: 100; background: var(--navy); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 60px; }
   .nav-logo { font-weight: 900; font-size: 18px; letter-spacing: -0.03em; color: var(--white); text-decoration: none; }
   .nav-logo span { color: var(--amber); }
@@ -38,24 +39,14 @@
   .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--amber); color: var(--navy); font-weight: 700; font-size: 16px; padding: 14px 28px; border: none; cursor: pointer; text-decoration: none; transition: background 0.15s; }
   .btn-primary:hover { background: var(--amber2); }
   .hero-note { font-size: 13px; color: var(--muted); }
-  .badge-demo { background: var(--navy2); border: 1px solid var(--border); border-left: 4px solid var(--amber); padding: 20px 24px; font-family: 'Inter', sans-serif; max-width: 340px; position: relative; }
-  .badge-demo-label { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; margin-bottom: 16px; }
-  .badge-row { display: flex; align-items: flex-start; gap: 12px; }
-  .badge-icon { font-size: 22px; margin-top: 2px; }
-  .badge-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
-  .badge-rating { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-  .badge-rating .shown { color: var(--red); }
-  .badge-rating .arrow { color: var(--muted); margin: 0 4px; }
-  .badge-rating .real { color: var(--green); }
-  .badge-sub { font-size: 12px; color: var(--muted); }
-  .badge-sub a { color: var(--amber); text-decoration: none; }
-  .badge-close { position: absolute; top: 14px; right: 14px; font-size: 16px; color: var(--muted); cursor: pointer; background: none; border: none; }
-  .hero-visual { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
-  .map-mock { width: 100%; height: 180px; background: var(--navy2); border: 1px solid var(--border); position: relative; overflow: hidden; margin-bottom: 4px; }
-  .map-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.5; }
-  .map-pin { position: absolute; font-size: 24px; }
-  .map-pin-1 { top: 40px; left: 80px; } .map-pin-2 { top: 90px; left: 200px; } .map-pin-3 { top: 60px; left: 310px; }
-  .map-label { position: absolute; bottom: 12px; left: 12px; font-size: 11px; color: var(--muted); background: var(--navy2); padding: 3px 8px; border: 1px solid var(--border); }
+  .hero-visual { position: relative; }
+  .shot-frame { background: var(--navy2); border: 1px solid var(--border); padding: 6px; position: relative; }
+  .shot-frame img { width: 100%; height: auto; border: 1px solid var(--border); }
+  .shot-tag { position: absolute; top: 16px; left: 16px; background: var(--navy); border: 1px solid var(--border); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 5px 10px; display: flex; align-items: center; gap: 6px; z-index: 2; }
+  .shot-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .shot-callout { position: absolute; bottom: -28px; left: -28px; width: 46%; background: var(--navy2); border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.4); padding: 4px; }
+  .shot-callout img { width: 100%; height: auto; }
+  @media (max-width: 768px) { .shot-callout { display: none; } }
   .stats-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--navy2); }
   .stats-inner { max-width: 1120px; margin: 0 auto; padding: 0 48px; display: flex; gap: 0; }
   .stat-item { flex: 1; padding: 32px 0; border-right: 1px solid var(--border); }
@@ -63,8 +54,10 @@
   .stat-num { font-size: 40px; font-weight: 900; letter-spacing: -0.04em; color: var(--amber); line-height: 1; margin-bottom: 6px; }
   .stat-label { font-size: 13px; color: var(--muted); }
   .section { max-width: 1120px; margin: 0 auto; padding: 96px 48px; }
-  .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 56px; }
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 16px; }
+  .section-lead { color: var(--muted); font-size: 16px; line-height: 1.7; max-width: 640px; margin-bottom: 56px; }
+  .section-title + .steps, .section-title + .privacy-grid { margin-top: 56px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 56px; }
   .step { background: var(--navy); padding: 40px 36px; }
   .step-num { font-size: 48px; font-weight: 900; letter-spacing: -0.04em; color: var(--border); line-height: 1; margin-bottom: 20px; }
   .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
@@ -78,16 +71,51 @@
   .example-banner { background: var(--navy); border: 1px solid var(--border); border-left: 3px solid var(--amber); padding: 16px 20px; margin-bottom: 12px; }
   .example-banner-lang { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: var(--amber); text-transform: uppercase; margin-bottom: 8px; }
   .example-banner-text { font-size: 13px; color: var(--white); line-height: 1.5; font-style: italic; }
+
+  /* Dashboard mock section */
+  .dash-section { max-width: 1120px; margin: 0 auto; padding: 96px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .dash-mock { background: #ffffff; color: #1a1a1a; border-radius: 10px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.45); position: relative; }
+  .dash-mock-badge { position: absolute; top: 12px; right: 12px; background: rgba(15,27,45,0.85); color: var(--amber); font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 9px; border-radius: 4px; z-index: 2; }
+  .dash-mock-head { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; padding: 16px 18px; font-size: 13px; font-weight: 700; }
+  .dash-mock-head small { display: block; font-weight: 400; font-size: 11px; opacity: 0.85; margin-top: 2px; }
+  .dash-mock-controls { display: flex; gap: 8px; padding: 12px 16px; border-bottom: 1px solid #eef0f2; }
+  .dash-mock-controls .fake-input { flex: 1; background: #f4f5f7; border: 1px solid #e3e5e9; border-radius: 6px; font-size: 12px; color: #8a94a3; padding: 7px 10px; }
+  .dash-mock-controls .fake-select { background: #f4f5f7; border: 1px solid #e3e5e9; border-radius: 6px; font-size: 12px; color: #8a94a3; padding: 7px 10px; }
+  .dash-mock-list { padding: 10px 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .dash-card { background: #fafbfc; border: 1px solid #edeff2; border-radius: 8px; padding: 10px 12px; border-left: 4px solid var(--sev, var(--red)); }
+  .dash-card .name { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+  .dash-card .warn { font-size: 11.5px; font-weight: 600; color: var(--sev, var(--red)); margin-bottom: 3px; }
+  .dash-card .meta { font-size: 11px; color: #8a94a3; }
+  .dash-features { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .dash-feature-chip { font-size: 12px; color: var(--muted); border: 1px solid var(--border); padding: 5px 12px; }
+
+  /* Calculation walkthrough */
+  .calc-section { background: var(--navy2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .calc-inner { max-width: 900px; margin: 0 auto; padding: 96px 48px; }
+  .calc-fictional-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy); background: var(--amber); padding: 4px 10px; margin-bottom: 20px; }
+  .calc-steps { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 40px 0; }
+  .calc-step { background: var(--navy); padding: 20px 24px; display: grid; grid-template-columns: 32px 1fr; gap: 16px; align-items: start; }
+  .calc-step-num { font-size: 14px; font-weight: 900; color: var(--amber); background: var(--navy2); border: 1px solid var(--border); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .calc-step h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .calc-step p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .calc-caveat { font-size: 14px; color: var(--muted); line-height: 1.7; border-left: 3px solid var(--amber); padding: 14px 20px; background: var(--navy); }
+
   .privacy-section { max-width: 1120px; margin: 0 auto; padding: 96px 48px; }
-  .privacy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 48px; }
+  .privacy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
   .privacy-item { background: var(--navy); padding: 32px 36px; display: flex; gap: 16px; align-items: flex-start; }
   .privacy-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
   .privacy-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
   .privacy-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
   .objection-section { border-top: 1px solid var(--border); }
-  .objection-inner { max-width: 640px; margin: 0 auto; padding: 64px 48px; text-align: left; }
+  .objection-inner { max-width: 780px; margin: 0 auto; padding: 80px 48px; text-align: left; }
   .objection-inner h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 16px; }
-  .objection-inner p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+  .objection-inner > p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 32px; max-width: 640px; }
+  .obj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 32px; }
+  .obj-point { background: var(--navy); padding: 24px; }
+  .obj-point h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .obj-point p { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0; max-width: none; }
+
   .signup-section { background: var(--navy2); border-top: 1px solid var(--border); }
   .signup-inner { max-width: 640px; margin: 0 auto; padding: 96px 48px; text-align: left; }
   .signup-inner h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 16px; }
@@ -107,14 +135,20 @@
   .footer-links a:hover { color: var(--white); }
   .footer-disclaimer { width: 100%; font-size: 12px; color: var(--muted); line-height: 1.6; padding-top: 16px; border-top: 1px solid var(--border); margin-top: 8px; }
   @media (max-width: 768px) {
-    nav { padding: 0 20px; } .nav-right { gap: 12px; } nav a.nav-link { display: none; }
+    nav { padding: 10px 14px; height: auto; flex-wrap: wrap; row-gap: 8px; }
+    .nav-right { gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    nav a.nav-link { display: none; }
+    .btn-install { font-size: 12px; padding: 7px 12px; white-space: nowrap; gap: 5px; }
     .hero { grid-template-columns: 1fr; padding: 56px 20px 48px; gap: 40px; }
     .hero-visual { order: -1; } .hero h1 { font-size: 36px; } .hero-sub { font-size: 16px; }
     .stats-inner { padding: 0 20px; flex-wrap: wrap; }
     .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 0; }
     .section { padding: 56px 20px; } .steps { grid-template-columns: 1fr; }
     .detect-inner { grid-template-columns: 1fr; padding: 56px 20px; gap: 40px; }
+    .dash-section { grid-template-columns: 1fr; padding: 56px 20px; gap: 40px; }
+    .calc-inner { padding: 56px 20px; } .calc-step { grid-template-columns: 28px 1fr; }
     .privacy-grid { grid-template-columns: 1fr; } .privacy-section { padding: 56px 20px; }
+    .obj-grid { grid-template-columns: 1fr; }
     .signup-inner { padding: 56px 20px; }
     .objection-inner { padding: 48px 20px; }
     .email-form { flex-direction: column; }
@@ -154,30 +188,12 @@
     </div>
   </div>
   <div class="hero-visual">
-    <div class="map-mock">
-      <div class="map-grid"></div>
-      <div class="map-pin map-pin-1">&#x1F4CD;</div>
-      <div class="map-pin map-pin-2">&#x1F4CD;</div>
-      <div class="map-pin map-pin-3">&#x1F4CD;</div>
-      <div class="map-label">Hamburg, Deutschland</div>
+    <div class="shot-frame">
+      <span class="shot-tag"><span class="dot"></span><span data-i18n="shot_tag_real">Echter Screenshot</span></span>
+      <img src="assets/hero-screenshot.jpg" alt="RealRating-Badge live auf Google Maps" loading="eager" />
     </div>
-    <div class="badge-demo">
-      <div class="badge-demo-label" data-i18n="badge_label">RealRating-Badge &#x2014; Live-Beispiel</div>
-      <button class="badge-close" disabled>&#xD7;</button>
-      <div class="badge-row">
-        <div class="badge-icon">&#x26A0;&#xFE0F;</div>
-        <div>
-          <div class="badge-title" data-i18n="badge_title">11&#x2013;20 Bewertungen entfernt</div>
-          <div class="badge-rating">
-            <span class="shown">4.7&#x2605;</span>
-            <span class="arrow">&#x2192;</span>
-            <span class="real" data-i18n="badge_real">~4.61&#x2605; gesch&#xE4;tzte echte Bewertung</span>
-          </div>
-          <div class="badge-sub">
-            <span data-i18n="badge_sub">Deutsche Verleumdungsbeschwerde</span> &middot; <a href="#" data-i18n="badge_details">Details</a>
-          </div>
-        </div>
-      </div>
+    <div class="shot-callout">
+      <img src="assets/badge-zoom.jpg" alt="RealRating-Badge Nahaufnahme" loading="lazy" />
     </div>
   </div>
 </section>
@@ -220,6 +236,44 @@
   </div>
 </div>
 
+<section id="dashboard" class="dash-section">
+  <div>
+    <h2 class="section-title" style="margin-bottom:16px" data-i18n="dash_title">Alle Erkennungen an einem Ort</h2>
+    <p class="section-lead" style="margin-bottom:24px" data-i18n="dash_sub">&#xD6;ffnen Sie das RealRating-Popup und sehen Sie jede erkannte Entfernung auf einen Blick &#x2014; durchsuchbar, sortierbar, mit einem Klick kopierbar.</p>
+    <div class="dash-features">
+      <span class="dash-feature-chip" data-i18n="dash_f1">&#x1F50D; Suche nach Name</span>
+      <span class="dash-feature-chip" data-i18n="dash_f2">&#x2195;&#xFE0F; Sortierung (Neueste &middot; Schwere &middot; Name)</span>
+      <span class="dash-feature-chip" data-i18n="dash_f3">&#x1F3A8; Farbcodierung nach Schweregrad</span>
+      <span class="dash-feature-chip" data-i18n="dash_f4">&#x1F4CB; Ein-Klick-Kopie</span>
+    </div>
+  </div>
+  <div class="dash-mock" aria-hidden="true">
+    <span class="dash-mock-badge" data-i18n="dash_mock_tag">Beispielansicht</span>
+    <div class="dash-mock-head">RealRating Dashboard<small data-i18n="dash_mock_head_sub">6 Unternehmen erkannt</small></div>
+    <div class="dash-mock-controls"><span class="fake-input" data-i18n="dash_mock_search">Unternehmen suchen&#x2026;</span><span class="fake-select" data-i18n="dash_mock_sort">Neueste zuerst</span></div>
+    <div class="dash-mock-list">
+      <div class="dash-card" style="--sev:var(--orange)"><div class="name" data-i18n="dash_ex1_name">Gasthaus Zur Linde</div><div class="warn" data-i18n="dash_ex1_warn">11&#x2013;20 Bewertungen entfernt</div><div class="meta">4.6&#x2605; &#x2192; ~4.55&#x2605; &middot; 812 <span data-i18n="dash_reviews">Bewertungen</span></div></div>
+      <div class="dash-card" style="--sev:#eab308"><div class="name" data-i18n="dash_ex2_name">B&#xE4;ckerei-Caf&#xE9; Hoffmann</div><div class="warn" style="color:#a16207" data-i18n="dash_ex2_warn">1 Bewertung entfernt</div><div class="meta">4.9&#x2605; &#x2192; ~4.87&#x2605; &middot; 340 <span data-i18n="dash_reviews">Bewertungen</span></div></div>
+      <div class="dash-card" style="--sev:var(--red)"><div class="name" data-i18n="dash_ex3_name">Pizzeria Da Marco</div><div class="warn" data-i18n="dash_ex3_warn">51&#x2013;100 Bewertungen entfernt</div><div class="meta">4.7&#x2605; &#x2192; ~4.21&#x2605; &middot; 1204 <span data-i18n="dash_reviews">Bewertungen</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="calc-section">
+  <div class="calc-inner">
+    <h2 class="section-title" data-i18n="calc_title">So wird die Sch&#xE4;tzung berechnet</h2>
+    <p class="section-lead" data-i18n="calc_intro">RealRating erfindet keine Zahlen. Die Sch&#xE4;tzung basiert auf einer einfachen, nachvollziehbaren Rechnung &#x2014; offen einsehbar und als Einordnungshilfe gedacht, nicht als Tatsachenbehauptung.</p>
+    <span class="calc-fictional-tag" data-i18n="calc_fictional_tag">Beispielrechnung &middot; fiktive Zahlen</span>
+    <div class="calc-steps">
+      <div class="calc-step"><div class="calc-step-num">1</div><div><h4 data-i18n="calc_s1_h">Angezeigte Bewertung ablesen</h4><p data-i18n="calc_s1_p">Beispiel: 4.6&#x2605; bei 812 Bewertungen &#x2014; so, wie Google Maps sie aktuell anzeigt.</p></div></div>
+      <div class="calc-step"><div class="calc-step-num">2</div><div><h4 data-i18n="calc_s2_h">Google-Hinweis auslesen</h4><p data-i18n="calc_s2_p">&#x201E;11 bis 20 Bewertungen wegen Diffamierungsbeschwerden entfernt&#x201C; &#x2014; ein Hinweis, den Google Maps selbst bereits &#xF6;ffentlich anzeigt.</p></div></div>
+      <div class="calc-step"><div class="calc-step-num">3</div><div><h4 data-i18n="calc_s3_h">Mittelwert des Bereichs annehmen</h4><p data-i18n="calc_s3_p">Aus &#x201E;11 bis 20&#x201C; wird die Mitte verwendet (15,5). Es wird angenommen, dass entfernte Bewertungen im Schnitt niedriger ausfielen als sichtbare.</p></div></div>
+      <div class="calc-step"><div class="calc-step-num">4</div><div><h4 data-i18n="calc_s4_h">Gesch&#xE4;tzte echte Bewertung anzeigen</h4><p data-i18n="calc_s4_p">Ergebnis: ~4.55&#x2605; &#x2014; berechnet nach der gleichen Methode wie Pieter Levels&#x2019; Real Rating Calculator.</p></div></div>
+    </div>
+    <p class="calc-caveat" data-i18n="calc_caveat">Entfernte Bewertungen k&#xF6;nnen aus vielen Gr&#xFC;nden entstehen &#x2014; auch aus berechtigten. Die Sch&#xE4;tzung ersetzt keine Pr&#xFC;fung des Einzelfalls und ist keine verifizierte Tatsachenbehauptung &#xFC;ber ein Unternehmen.</p>
+  </div>
+</div>
+
 <section id="privacy" class="privacy-section">
   <h2 class="section-title" data-i18n="priv_title">Ihre Privatsph&#xE4;re zuerst</h2>
   <div class="privacy-grid">
@@ -234,6 +288,11 @@
   <div class="objection-inner">
     <h2 data-i18n="obj_h">Sind Sie Inhaber dieses Unternehmens?</h2>
     <p data-i18n="obj_p">Wenn Sie glauben, dass eine hier angezeigte Information fehlerhaft ist, oder Fragen zu einer Bewertungsanzeige haben, kontaktieren Sie uns direkt &#x2014; wir gehen jeder Meldung nach.</p>
+    <div class="obj-grid">
+      <div class="obj-point"><h4 data-i18n="obj_pt1_h">Eine Sch&#xE4;tzung ist keine Tatsache</h4><p data-i18n="obj_pt1_p">Die gesch&#xE4;tzte echte Bewertung ist eine rechnerische Ann&#xE4;herung, keine verifizierte Aussage &#xFC;ber Ihr Unternehmen.</p></div>
+      <div class="obj-point"><h4 data-i18n="obj_pt2_h">Entfernung heisst nicht automatisch negativ</h4><p data-i18n="obj_pt2_p">Bewertungen werden aus vielen Gr&#xFC;nden entfernt &#x2014; auch bei berechtigten Beschwerden gegen gef&#xE4;lschte oder missbr&#xE4;uchliche Eintr&#xE4;ge.</p></div>
+      <div class="obj-point"><h4 data-i18n="obj_pt3_h">Wir pr&#xFC;fen jede Meldung</h4><p data-i18n="obj_pt3_p">Melden Sie uns Unstimmigkeiten &#x2014; wir gehen jedem Fall nach und korrigieren oder erg&#xE4;nzen Informationen bei Bedarf.</p></div>
+    </div>
     <a href="mailto:hello@realrating.de?subject=Gesch%C3%A4ftsinhaber-Meldung" class="btn-primary" data-i18n="obj_btn">Kontakt aufnehmen</a>
   </div>
 </div>
@@ -271,11 +330,7 @@ const T = {
     hero_h1:      `Die Bewertung nach den Löschungen.<br>Wir machen sie <em>sichtbar.</em>`,
     hero_sub:     `In Deutschland können Unternehmen Bewertungen per Verleumdungsbeschwerde entfernen lassen. RealRating erkennt diese Entfernungen und schätzt, wie die echte Bewertung aussehen würde.`,
     hero_note:    `Chrome · Kein Konto erforderlich`,
-    badge_label:  `RealRating-Badge — Live-Beispiel`,
-    badge_title:  `11–20 Bewertungen entfernt`,
-    badge_real:   `~4.61★ geschätzte echte Bewertung`,
-    badge_sub:    `Deutsche Verleumdungsbeschwerde`,
-    badge_details:`Details`,
+    shot_tag_real:`Echter Screenshot`,
     stat1: `Kostenlos, für immer`,
     stat2: `Daten an Server übermittelt`,
     stat3: `Unterstützte Sprachen (DE · EN · TR)`,
@@ -290,6 +345,35 @@ const T = {
     det_title:    `In drei Sprachen erkannt`,
     det_p1:       `Google Maps zeigt den Entfernungshinweis in der UI-Sprache des Nutzers — nicht immer auf Deutsch. RealRating erkennt den Hinweis unabhängig davon, auf welche Sprache Maps eingestellt ist.`,
     det_p2:       `Alle Zahlenformate werden unterstützt: „11 to 20“, „Two to five“, „Zwei bis fünf“, „Over 250“, „Eine Bewertung“.`,
+    dash_title:   `Alle Erkennungen an einem Ort`,
+    dash_sub:     `Öffnen Sie das RealRating-Popup und sehen Sie jede erkannte Entfernung auf einen Blick — durchsuchbar, sortierbar, mit einem Klick kopierbar.`,
+    dash_f1:      `🔍 Suche nach Name`,
+    dash_f2:      `↕️ Sortierung (Neueste · Schwere · Name)`,
+    dash_f3:      `🎨 Farbcodierung nach Schweregrad`,
+    dash_f4:      `📋 Ein-Klick-Kopie`,
+    dash_mock_tag: `Beispielansicht`,
+    dash_mock_head_sub: `6 Unternehmen erkannt`,
+    dash_mock_search: `Unternehmen suchen…`,
+    dash_mock_sort: `Neueste zuerst`,
+    dash_reviews: `Bewertungen`,
+    dash_ex1_name: `Gasthaus Zur Linde`,
+    dash_ex1_warn: `11–20 Bewertungen entfernt`,
+    dash_ex2_name: `Bäckerei-Café Hoffmann`,
+    dash_ex2_warn: `1 Bewertung entfernt`,
+    dash_ex3_name: `Pizzeria Da Marco`,
+    dash_ex3_warn: `51–100 Bewertungen entfernt`,
+    calc_title:   `So wird die Schätzung berechnet`,
+    calc_intro:   `RealRating erfindet keine Zahlen. Die Schätzung basiert auf einer einfachen, nachvollziehbaren Rechnung — offen einsehbar und als Einordnungshilfe gedacht, nicht als Tatsachenbehauptung.`,
+    calc_fictional_tag: `Beispielrechnung · fiktive Zahlen`,
+    calc_s1_h:    `Angezeigte Bewertung ablesen`,
+    calc_s1_p:    `Beispiel: 4.6★ bei 812 Bewertungen — so, wie Google Maps sie aktuell anzeigt.`,
+    calc_s2_h:    `Google-Hinweis auslesen`,
+    calc_s2_p:    `„11 bis 20 Bewertungen wegen Diffamierungsbeschwerden entfernt“ — ein Hinweis, den Google Maps selbst bereits öffentlich anzeigt.`,
+    calc_s3_h:    `Mittelwert des Bereichs annehmen`,
+    calc_s3_p:    `Aus „11 bis 20“ wird die Mitte verwendet (15,5). Es wird angenommen, dass entfernte Bewertungen im Schnitt niedriger ausfielen als sichtbare.`,
+    calc_s4_h:    `Geschätzte echte Bewertung anzeigen`,
+    calc_s4_p:    `Ergebnis: ~4.55★ — berechnet nach der gleichen Methode wie Pieter Levels’ Real Rating Calculator.`,
+    calc_caveat:  `Entfernte Bewertungen können aus vielen Gründen entstehen — auch aus berechtigten. Die Schätzung ersetzt keine Prüfung des Einzelfalls und ist keine verifizierte Tatsachenbehauptung über ein Unternehmen.`,
     priv_title:   `Ihre Privatsphäre zuerst`,
     priv1_h:      `Kein Server, kein Konto`,
     priv1_p:      `Alle Erkennungen werden nur in Ihrem eigenen Browser gespeichert. Nichts verlässt Ihr Gerät. Kein Konto erforderlich, niemals.`,
@@ -301,6 +385,12 @@ const T = {
     priv4_p:      `RealRating benötigt nur <code style="font-size:12px;color:var(--amber)">storage</code> und Zugriff auf <code style="font-size:12px;color:var(--amber)">google.com/maps/*</code> — nichts darüber hinaus.`,
     obj_h:        `Sind Sie Inhaber dieses Unternehmens?`,
     obj_p:        `Wenn Sie glauben, dass eine hier angezeigte Information fehlerhaft ist, oder Fragen zu einer Bewertungsanzeige haben, kontaktieren Sie uns direkt — wir gehen jeder Meldung nach.`,
+    obj_pt1_h:    `Eine Schätzung ist keine Tatsache`,
+    obj_pt1_p:    `Die geschätzte echte Bewertung ist eine rechnerische Annäherung, keine verifizierte Aussage über Ihr Unternehmen.`,
+    obj_pt2_h:    `Entfernung heisst nicht automatisch negativ`,
+    obj_pt2_p:    `Bewertungen werden aus vielen Gründen entfernt — auch bei berechtigten Beschwerden gegen gefälschte oder missbräuchliche Einträge.`,
+    obj_pt3_h:    `Wir prüfen jede Meldung`,
+    obj_pt3_p:    `Melden Sie uns Unstimmigkeiten — wir gehen jedem Fall nach und korrigieren oder ergänzen Informationen bei Bedarf.`,
     obj_btn:      `Kontakt aufnehmen`,
     signup_h:     `Bleib auf dem Laufenden`,
     signup_p:     `Neue Funktionen, Transparenzberichte und Updates zu deutschen Verleumdungsentfernungen — gelegentlich, niemals Spam.`,
@@ -321,11 +411,7 @@ const T = {
     hero_h1:      `The rating after the removals.<br>We make it <em>visible.</em>`,
     hero_sub:     `In Germany, businesses can have reviews removed via defamation complaints. RealRating detects these removals and estimates what the real rating would be.`,
     hero_note:    `Chrome · No account required`,
-    badge_label:  `RealRating badge — live example`,
-    badge_title:  `11–20 reviews removed`,
-    badge_real:   `~4.61★ estimated real rating`,
-    badge_sub:    `Germany defamation complaint`,
-    badge_details:`details`,
+    shot_tag_real:`Real screenshot`,
     stat1: `Free, forever`,
     stat2: `Data sent to servers`,
     stat3: `Languages supported (DE · EN · TR)`,
@@ -340,6 +426,35 @@ const T = {
     det_title:    `Detected in three languages`,
     det_p1:       `Google Maps shows the removal notice in the UI language of the user — not always German. RealRating detects the notice regardless of which language Maps is set to.`,
     det_p2:       `All number formats are handled: “11 to 20”, “Two to five”, “Zwei bis fünf”, “Over 250”, “Eine Bewertung”.`,
+    dash_title:   `Every detection, in one place`,
+    dash_sub:     `Open the RealRating popup and see every detected removal at a glance — searchable, sortable, one click to copy.`,
+    dash_f1:      `🔍 Search by name`,
+    dash_f2:      `↕️ Sort (Newest · Severity · Name)`,
+    dash_f3:      `🎨 Severity colour-coding`,
+    dash_f4:      `📋 One-click copy`,
+    dash_mock_tag: `Example view`,
+    dash_mock_head_sub: `6 businesses detected`,
+    dash_mock_search: `Search business…`,
+    dash_mock_sort: `Newest first`,
+    dash_reviews: `reviews`,
+    dash_ex1_name: `Gasthaus Zur Linde`,
+    dash_ex1_warn: `11–20 reviews removed`,
+    dash_ex2_name: `Bäckerei-Café Hoffmann`,
+    dash_ex2_warn: `1 review removed`,
+    dash_ex3_name: `Pizzeria Da Marco`,
+    dash_ex3_warn: `51–100 reviews removed`,
+    calc_title:   `How the estimate is calculated`,
+    calc_intro:   `RealRating doesn’t invent numbers. The estimate is based on a simple, transparent calculation — open to inspect, meant as a point of reference, not a factual claim.`,
+    calc_fictional_tag: `Sample calculation · fictional numbers`,
+    calc_s1_h:    `Read the shown rating`,
+    calc_s1_p:    `Example: 4.6★ across 812 reviews — exactly as Google Maps currently shows it.`,
+    calc_s2_h:    `Read Google’s notice`,
+    calc_s2_p:    `“11 to 20 reviews removed due to defamation complaints” — a notice Google Maps itself already displays publicly.`,
+    calc_s3_h:    `Assume the midpoint of the range`,
+    calc_s3_p:    `“11 to 20” becomes 15.5. It’s assumed removed reviews scored lower on average than the visible ones.`,
+    calc_s4_h:    `Show the estimated real rating`,
+    calc_s4_p:    `Result: ~4.55★ — calculated using the same method as Pieter Levels’ Real Rating Calculator.`,
+    calc_caveat:  `Reviews get removed for many reasons — including legitimate ones. The estimate does not replace a case-by-case review and is not a verified factual claim about any business.`,
     priv_title:   `Built around your privacy`,
     priv1_h:      `No server, no account`,
     priv1_p:      `All detections are stored only in your own browser. Nothing leaves your device. No account required, ever.`,
@@ -351,6 +466,12 @@ const T = {
     priv4_p:      `RealRating requests only <code style="font-size:12px;color:var(--amber)">storage</code> and access to <code style="font-size:12px;color:var(--amber)">google.com/maps/*</code> — nothing broader.`,
     obj_h:        `Are you the owner of this business?`,
     obj_p:        `If you believe any information shown here is inaccurate, or have questions about a rating display, contact us directly — we follow up on every report.`,
+    obj_pt1_h:    `An estimate is not a fact`,
+    obj_pt1_p:    `The estimated real rating is a calculated approximation, not a verified statement about your business.`,
+    obj_pt2_h:    `Removal doesn’t automatically mean something negative`,
+    obj_pt2_p:    `Reviews get removed for many reasons — including legitimate complaints against fake or abusive entries.`,
+    obj_pt3_h:    `We review every report`,
+    obj_pt3_p:    `Report any discrepancy — we follow up on every case and correct or add information where needed.`,
     obj_btn:      `Get in touch`,
     signup_h:     `Stay in the loop`,
     signup_p:     `New features, transparency reports, and updates on German defamation removals — delivered occasionally, never spam.`,
@@ -371,11 +492,7 @@ const T = {
     hero_h1:      `Silinmelerden sonraki puan.<br>Biz onu <em>görünür</em> kılıyoruz.`,
     hero_sub:     `Almanya’da işletmeler, hakaret şikayetleriyle yorumlarını kaldırtabilir. RealRating bu kaldırmaları tespit eder ve gerçek puanın ne olacağını tahmin eder.`,
     hero_note:    `Chrome · Hesap gerekmez`,
-    badge_label:  `RealRating rozeti — canlı örnek`,
-    badge_title:  `11–20 yorum kaldırıldı`,
-    badge_real:   `~4.61★ tahmini gerçek puan`,
-    badge_sub:    `Almanya hakaret şikayeti`,
-    badge_details:`detaylar`,
+    shot_tag_real:`Gerçek ekran görüntüsü`,
     stat1: `Ücretsiz, sonsuza kadar`,
     stat2: `Sunuculara gönderilen veri`,
     stat3: `Desteklenen diller (DE · EN · TR)`,
@@ -390,6 +507,35 @@ const T = {
     det_title:    `Üç dilde tespit`,
     det_p1:       `Google Haritalar, kaldırma bildirimini kullanıcının arayüz diline göre gösterir — her zaman Almanca değil. RealRating, Haritalar hangi dile ayarlanmış olursa olsun bildirimi tespit eder.`,
     det_p2:       `“11 to 20”, “Two to five”, “Zwei bis fünf”, “Over 250”, “Eine Bewertung” gibi tüm sayı formatları desteklenir.`,
+    dash_title:   `Tüm tespitler tek yerde`,
+    dash_sub:     `RealRating açılır penceresini açın ve tespit edilen her kaldırmayı tek bakışta görün — aranabilir, sıralanabilir, tek tıkla kopyalanabilir.`,
+    dash_f1:      `🔍 İsme göre arama`,
+    dash_f2:      `↕️ Sıralama (Yeni · Şiddet · İsim)`,
+    dash_f3:      `🎨 Şiddet derecesine göre renklendirme`,
+    dash_f4:      `📋 Tek tıkla kopyalama`,
+    dash_mock_tag: `Örnek görünüm`,
+    dash_mock_head_sub: `6 işletme tespit edildi`,
+    dash_mock_search: `İşletme ara…`,
+    dash_mock_sort: `Önce en yeni`,
+    dash_reviews: `yorum`,
+    dash_ex1_name: `Gasthaus Zur Linde`,
+    dash_ex1_warn: `11–20 yorum kaldırıldı`,
+    dash_ex2_name: `Bäckerei-Café Hoffmann`,
+    dash_ex2_warn: `1 yorum kaldırıldı`,
+    dash_ex3_name: `Pizzeria Da Marco`,
+    dash_ex3_warn: `51–100 yorum kaldırıldı`,
+    calc_title:   `Tahmin nasıl hesaplanıyor`,
+    calc_intro:   `RealRating rakam uydurmaz. Tahmin, basit ve şeffaf bir hesaba dayanır — açıkça incelenebilir, bir gerçeklik iddiası değil, bir değerlendirme yardımcısı olarak düşünülmüştür.`,
+    calc_fictional_tag: `Örnek hesaplama · kurgusal sayılar`,
+    calc_s1_h:    `Görünen puanı oku`,
+    calc_s1_p:    `Örnek: 812 yorumda 4.6★ — Google Haritalar’ın şu anda gösterdiği hâliyle.`,
+    calc_s2_h:    `Google’ın bildirimini oku`,
+    calc_s2_p:    `“Hakaret şikayetleri nedeniyle 11 ila 20 yorum kaldırıldı” — Google Haritalar’ın zaten herkese açık gösterdiği bir bildirim.`,
+    calc_s3_h:    `Aralığın ortalamasını varsay`,
+    calc_s3_p:    `“11 ila 20” için ortalama (15,5) kullanılır. Kaldırılan yorumların ortalamada görünenlerden daha düşük puanlı olduğu varsayılır.`,
+    calc_s4_h:    `Tahmini gerçek puanı göster`,
+    calc_s4_p:    `Sonuç: ~4.55★ — Pieter Levels’ Real Rating Calculator ile aynı yöntemle hesaplanır.`,
+    calc_caveat:  `Yorumlar birçok nedenden kaldırılabilir — meşru nedenlerle de. Bu tahmin, tek tek incelemenin yerini tutmaz ve herhangi bir işletme hakkında doğrulanmış bir gerçeklik iddiası değildir.`,
     priv_title:   `Gizliliğiniz önce gelir`,
     priv1_h:      `Sunucu yok, hesap yok`,
     priv1_p:      `Tüm tespitler yalnızca kendi tarayıcınızda saklanır. Cihazınızdan hiçbir şey çıkmaz. Hiçbir zaman hesap gerekmez.`,
@@ -401,6 +547,12 @@ const T = {
     priv4_p:      `RealRating yalnızca <code style="font-size:12px;color:var(--amber)">storage</code> ve <code style="font-size:12px;color:var(--amber)">google.com/maps/*</code> erişimi ister — bunun ötesinde hiçbir şey.`,
     obj_h:        `Bu işletmenin sahibi misiniz?`,
     obj_p:        `Burada gösterilen bir bilginin hatalı olduğunu düşünüyorsanız veya bir puan gösterimiyle ilgili sorularınız varsa doğrudan bizimle iletişime geçin — her bildirimi inceliyoruz.`,
+    obj_pt1_h:    `Bir tahmin, gerçek değildir`,
+    obj_pt1_p:    `Tahmini gerçek puan, hesaplamaya dayalı bir yaklaşımdır — işletmeniz hakkında doğrulanmış bir ifade değildir.`,
+    obj_pt2_h:    `Kaldırma otomatik olarak olumsuz anlama gelmez`,
+    obj_pt2_p:    `Yorumlar birçok nedenden kaldırılır — sahte veya kötüye kullanım amaçlı yorumlara karşı meşru şikayetler de dahil.`,
+    obj_pt3_h:    `Her bildirimi inceliyoruz`,
+    obj_pt3_p:    `Bize tutarsızlıkları bildirin — her vakayı inceliyor, gerektiğinde bilgileri düzeltiyor veya tamamlıyoruz.`,
     obj_btn:      `İletişime geç`,
     signup_h:     `Haberdar ol`,
     signup_p:     `Yeni özellikler, şeffaflık raporları ve Almanya’daki hakaret kaldırma güncellemeleri — arada sırada, asla spam değil.`,
@@ -417,6 +569,8 @@ const T = {
 let currentLang = 'de';
 try { currentLang = localStorage.getItem('rr_lang') || 'de'; } catch(e) {}
 
+const HTML_KEYS = ['hero_h1', 'priv4_p'];
+
 function setLang(lang) {
   if (!T[lang]) return;
   currentLang = lang;
@@ -425,7 +579,9 @@ function setLang(lang) {
 
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.getAttribute('data-i18n');
-    if (T[lang][key] !== undefined) el.textContent = T[lang][key];
+    if (T[lang][key] === undefined) return;
+    if (HTML_KEYS.indexOf(key) !== -1) el.innerHTML = T[lang][key];
+    else el.textContent = T[lang][key];
   });
 
   document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
@@ -433,7 +589,6 @@ function setLang(lang) {
     if (T[lang][key] !== undefined) el.innerHTML = T[lang][key];
   });
 
-  // priv4_p contains HTML tags — use innerHTML
   document.querySelectorAll('[data-i18n="priv4_p"]').forEach(function(el) {
     if (T[lang]['priv4_p'] !== undefined) el.innerHTML = T[lang]['priv4_p'];
   });
